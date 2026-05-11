@@ -1,0 +1,314 @@
+[
+  {
+    "token": "FN",
+    "count": 17
+  },
+  {
+    "token": "CB",
+    "count": 17
+  },
+  {
+    "token": "金融",
+    "count": 14
+  },
+  {
+    "token": "安全",
+    "count": 14
+  },
+  {
+    "token": "職業",
+    "count": 8
+  },
+  {
+    "token": "衛生",
+    "count": 6
+  },
+  {
+    "token": "社區",
+    "count": 5
+  },
+  {
+    "token": "赤道",
+    "count": 4
+  },
+  {
+    "token": "投融資",
+    "count": 4
+  },
+  {
+    "token": "盡職",
+    "count": 4
+  },
+  {
+    "token": "年度",
+    "count": 4
+  },
+  {
+    "token": "主管",
+    "count": 4
+  },
+  {
+    "token": "減碳",
+    "count": 4
+  },
+  {
+    "token": "減少",
+    "count": 4
+  },
+  {
+    "token": "減量",
+    "count": 4
+  },
+  {
+    "token": "採購",
+    "count": 4
+  },
+  {
+    "token": "留任",
+    "count": 4
+  },
+  {
+    "token": "數位",
+    "count": 4
+  },
+  {
+    "token": "提案",
+    "count": 4
+  },
+  {
+    "token": "改善",
+    "count": 4
+  },
+  {
+    "token": "遠東",
+    "count": 4
+  },
+  {
+    "token": "行動",
+    "count": 4
+  },
+  {
+    "token": "成效",
+    "count": 4
+  },
+  {
+    "token": "以及",
+    "count": 4
+  },
+  {
+    "token": "物料",
+    "count": 4
+  },
+  {
+    "token": "資源",
+    "count": 4
+  },
+  {
+    "token": "處置",
+    "count": 4
+  },
+  {
+    "token": "應商",
+    "count": 4
+  },
+  {
+    "token": "健康",
+    "count": 4
+  },
+  {
+    "token": "完成",
+    "count": 4
+  },
+  {
+    "token": "化學",
+    "count": 4
+  },
+  {
+    "token": "燃料",
+    "count": 4
+  },
+  {
+    "token": "以台",
+    "count": 3
+  },
+  {
+    "token": "根據",
+    "count": 3
+  },
+  {
+    "token": "索引",
+    "count": 3
+  },
+  {
+    "token": "作為",
+    "count": 3
+  },
+  {
+    "token": "新金控",
+    "count": 3
+  },
+  {
+    "token": "架構",
+    "count": 3
+  },
+  {
+    "token": "描述",
+    "count": 3
+  },
+  {
+    "token": "鑑別",
+    "count": 3
+  },
+  {
+    "token": "測試",
+    "count": 3
+  },
+  {
+    "token": "資安",
+    "count": 3
+  },
+  {
+    "token": "期間",
+    "count": 3
+  },
+  {
+    "token": "洩漏",
+    "count": 3
+  },
+  {
+    "token": "上述",
+    "count": 3
+  },
+  {
+    "token": "資料",
+    "count": 3
+  },
+  {
+    "token": "實質",
+    "count": 3
+  },
+  {
+    "token": "能力",
+    "count": 3
+  },
+  {
+    "token": "促進",
+    "count": 3
+  },
+  {
+    "token": "專案",
+    "count": 3
+  },
+  {
+    "token": "貸款",
+    "count": 3
+  },
+  {
+    "token": "相關",
+    "count": 3
+  },
+  {
+    "token": "參與",
+    "count": 3
+  },
+  {
+    "token": "分析",
+    "count": 3
+  },
+  {
+    "token": "責任",
+    "count": 3
+  },
+  {
+    "token": "審核",
+    "count": 3
+  },
+  {
+    "token": "例如",
+    "count": 3
+  },
+  {
+    "token": "負面",
+    "count": 3
+  },
+  {
+    "token": "投融",
+    "count": 3
+  },
+  {
+    "token": "落實",
+    "count": 3
+  },
+  {
+    "token": "數據",
+    "count": 3
+  },
+  {
+    "token": "依據",
+    "count": 3
+  },
+  {
+    "token": "列出",
+    "count": 3
+  },
+  {
+    "token": "採用",
+    "count": 3
+  },
+  {
+    "token": "行為",
+    "count": 3
+  },
+  {
+    "token": "損失",
+    "count": 3
+  },
+  {
+    "token": "若有",
+    "count": 3
+  },
+  {
+    "token": "政策",
+    "count": 3
+  },
+  {
+    "token": "全球",
+    "count": 3
+  },
+  {
+    "token": "結果",
+    "count": 3
+  },
+  {
+    "token": "及其",
+    "count": 3
+  },
+  {
+    "token": "部分",
+    "count": 3
+  },
+  {
+    "token": "邏輯",
+    "count": 3
+  },
+  {
+    "token": "深度",
+    "count": 3
+  },
+  {
+    "token": "ERM",
+    "count": 3
+  },
+  {
+    "token": "單位",
+    "count": 3
+  },
+  {
+    "token": "案件",
+    "count": 3
+  },
+  {
+    "token": "工程",
+    "count": 3
+  }
+]

@@ -1,0 +1,10 @@
+fastapi==0.115.12
+starlette<0.47.0,>=0.40.0
+uvicorn[standard]==0.34.2
+motor==3.7.1
+pydantic==2.11.4
+# Added for PDF Processing and Vector Search
+pymupdf 
+numpy
+openai>=1.0.0 # Required for embedding service
+pymongo[srv]

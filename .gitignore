@@ -1,0 +1,12 @@
+data/
+.venv/
+venv/
+node_modules/
+*.pdf
+config.ini
+__pycache__/
+*.pyc
+*.pyo
+*.log
+bot_stdout.log
+bot_stderr.log

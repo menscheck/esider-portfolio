@@ -1,0 +1,30 @@
+[
+  {
+    "text": "正隆股份有限公司重視水資源管理，推動節水與回收再利用政策。2023年用水量為100萬立方米，2024年降至90萬立方米。",
+    "tags": [
+      "water",
+      "policy_statement",
+      "kpi_value"
+    ],
+    "source": "chengloong.txt",
+    "company": "chengloong"
+  },
+  {
+    "text": "統一企業提供完善薪酬福利制度，包括員工獎金與保險制度。2023年員工平均薪酬為50萬元。",
+    "tags": [
+      "kpi_value",
+      "benefits"
+    ],
+    "source": "uni.txt",
+    "company": "uni"
+  },
+  {
+    "text": "萬海航運致力於減碳策略，包括船舶節能與燃料優化，降低碳排放。2023年碳排放量為5000噸，2024年降至4500噸。",
+    "tags": [
+      "kpi_value",
+      "carbon"
+    ],
+    "source": "wanhai.txt",
+    "company": "wanhai"
+  }
+]
