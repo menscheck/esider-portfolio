@@ -128,11 +128,22 @@ def build_user_prompt(
 - 頁碼必須是資料段落中出現的真實數字
 - 禁止在括號前加④或任何符號"""
 
+    # 無 ESG 資料時，強制指示 LLM 誠實說明，不得用其他公司資料替代
+    if not evidence_parts:
+        company_name = chunks[0].get("company", "") if chunks else "該公司"
+        no_data_instruction = f"""
+【重要】資料庫中找不到「{company_name}」的相關ESG資料。
+請誠實告知用戶：「目前資料庫尚未收錄該公司的永續報告書資料，無法回答此問題。」
+不要用其他公司資料替代，不要說「未明確揭露」，直接說明資料庫尚未收錄。
+"""
+    else:
+        no_data_instruction = ""
+
     return f"""使用者問題：{query}
 
 識別到的ESG主題：{tag_text}
 
-{source_instruction}
+{no_data_instruction}{source_instruction}
 
 以下為從永續報告書中檢索到的相關段落：
 {evidence_text}

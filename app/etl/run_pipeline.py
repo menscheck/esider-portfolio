@@ -37,8 +37,12 @@ class ESGPipeline:
 
     def connect_mongodb(self):
         """連接到 MongoDB"""
+        import configparser as _cp, os as _os
+        _cfg = _cp.ConfigParser()
+        _cfg.read(_os.path.join(_os.path.dirname(__file__), '..', '..', 'config.ini'), encoding='utf-8')
+        mongo_uri = _cfg.get('mongodb', 'uri', fallback='mongodb://localhost:27017')
         logger.info("連接到 MongoDB...")
-        self.mongo_client = MongoClient('localhost', 27017)
+        self.mongo_client = MongoClient(mongo_uri)
         db = self.mongo_client['esg_db']
         self.mongo_collection = db['chunks']
         logger.info("MongoDB 連接成功")
