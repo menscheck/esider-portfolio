@@ -72,10 +72,25 @@
   .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
   .btn-outline { background: transparent; color: var(--green-pale); border: 1.5px solid rgba(116,198,157,0.5); }
   .btn-outline:hover { background: rgba(116,198,157,0.1); border-color: var(--green-pale); transform: translateY(-2px); }
+
+  /* QR + Title row */
+  .hero-title-row { display: flex; align-items: center; justify-content: center; gap: 32px; position: relative; flex-wrap: wrap; }
+  .hero-qr { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .hero-qr img { width: 100px; height: 100px; border-radius: 12px; border: 2px solid rgba(116,198,157,0.4); background: white; padding: 4px; }
+  .hero-qr-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Counter flip animation */
   .hero-stats { display: flex; gap: 48px; margin-top: 72px; justify-content: center; flex-wrap: wrap; position: relative; }
-  .stat { text-align: center; }
   .stat-num { font-size: 2.4rem; font-weight: 800; color: var(--white); line-height: 1; }
   .stat-num span { color: var(--green-pale); }
+  .counter { display: inline-block; }
+  @keyframes countFlip {
+    0%   { transform: translateY(-60%); opacity: 0; }
+    20%  { transform: translateY(0);    opacity: 1; }
+    80%  { transform: translateY(0);    opacity: 1; }
+    100% { transform: translateY(0);    opacity: 1; }
+  }
+  .stat { text-align: center; }
   .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
   .stat-divider { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
 
@@ -201,23 +216,27 @@
 
 <section class="hero">
   <div class="hero-badge"><span class="badge-dot"></span>AI × ESG × LINE Bot</div>
-  <h1>永續洞察 <span>eSider</span></h1>
+  <div class="hero-title-row">
+    <h1>永續洞察 <span>eSider</span></h1>
+    <div class="hero-qr">
+      <a href="https://line.me/R/ti/p/@142ksjrj" target="_blank">
+        <img src="https://i.ibb.co/TMm1cLVN/142ksjrj.png" alt="加入 LINE Bot">
+      </a>
+      <span class="hero-qr-label">掃碼加入 LINE Bot</span>
+    </div>
+  </div>
   <p class="hero-sub">ESG Chatbot — Powered by RAG + GPT-4.1</p>
   <p class="hero-desc">整合台灣 83 家主要上市櫃公司永續報告書，以 AI 驅動語意查詢，讓 ESG 從業者、投資人、求職者即時獲取精準的永續洞察。</p>
-  <div class="hero-cta">
-    <a href="https://esider-sqii2qz.gamma.site/" class="btn btn-primary" target="_blank">▶ 查看 Demo</a>
-    <a href="https://gamma.app/docs/MVP-z09zmf170atmvtb" class="btn btn-outline" target="_blank">📊 MVP Deck</a>
-  </div>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-num">83<span>家</span></div><div class="stat-label">上市櫃公司</div></div>
+    <div class="stat"><div class="stat-num"><span class="counter" data-target="83" data-suffix="家">0</span></div><div class="stat-label">上市櫃公司</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">40,604<span>筆</span></div><div class="stat-label">ESG 語料</div></div>
+    <div class="stat"><div class="stat-num"><span class="counter" data-target="40604" data-suffix="筆">0</span></div><div class="stat-label">ESG 語料</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">200<span>份</span></div><div class="stat-label">永續報告書</div></div>
+    <div class="stat"><div class="stat-num"><span class="counter" data-target="200" data-suffix="份">0</span></div><div class="stat-label">永續報告書</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">90<span>×</span></div><div class="stat-label">查詢效率提升</div></div>
+    <div class="stat"><div class="stat-num"><span class="counter" data-target="90" data-suffix="×">0</span></div><div class="stat-label">查詢效率提升</div></div>
     <div class="stat-divider"></div>
-    <div class="stat"><div class="stat-num">4<span>種</span></div><div class="stat-label">利害關係人角色</div></div>
+    <div class="stat"><div class="stat-num"><span class="counter" data-target="4" data-suffix="種">0</span></div><div class="stat-label">利害關係人角色</div></div>
   </div>
 </section>
 
@@ -404,6 +423,46 @@
 <footer>
   Built by <span>Sam Joseph</span> · ESG Chatbot eSider · 2024–2025 · FastAPI + GPT-4.1 + Pinecone + LINE Bot
 </footer>
+
+<script>
+  function formatNum(n) {
+    return n >= 1000 ? n.toLocaleString('en-US') : n.toString();
+  }
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const steps = 60;
+    const interval = duration / steps;
+    let current = 0;
+    let step = 0;
+
+    const timer = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      current = Math.round(target * ease);
+      el.textContent = formatNum(current) + suffix;
+      if (step >= steps) {
+        el.textContent = formatNum(target) + suffix;
+        clearInterval(timer);
+      }
+    }, interval);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.counter').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
