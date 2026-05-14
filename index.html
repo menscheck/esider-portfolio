@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eSider — AI 驅動永續洞察平台</title>
+<style>
+  :root {
+    --green-dark: #1a4731;
+    --green-mid: #2d6a4f;
+    --green-light: #40916c;
+    --green-pale: #74c69d;
+    --green-ghost: #d8f3dc;
+    --gold: #e9c46a;
+    --bg: #f8faf9;
+    --text: #1b2d24;
+    --text-muted: #4a6358;
+    --border: #c8e6d1;
+    --white: #ffffff;
+    --shadow: 0 4px 24px rgba(26,71,49,0.10);
+    --shadow-lg: 0 8px 40px rgba(26,71,49,0.16);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(26,71,49,0.96); backdrop-filter: blur(12px);
+    display: flex; align-items:center; justify-content:space-between;
+    padding: 0 48px; height: 60px;
+  }
+  .nav-logo { color: var(--green-pale); font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display:flex; gap:32px; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration:none; font-size: 0.88rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green-pale); }
+
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--green-dark) 0%, #0d2d1e 60%, #162b22 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 60px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(64,145,108,0.18) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(64,145,108,0.2); border: 1px solid rgba(116,198,157,0.35);
+    color: var(--green-pale); padding: 6px 18px; border-radius: 100px;
+    font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 28px; position: relative;
+  }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-pale); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800; color: var(--white);
+    letter-spacing: -1px; position: relative; margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--green-pale); }
+  .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.55); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 24px; position: relative; }
+  .hero-desc { max-width: 640px; font-size: 1.15rem; color: rgba(255,255,255,0.72); line-height: 1.8; margin-bottom: 48px; position: relative; }
+  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+    text-decoration: none; transition: all 0.25s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--green-light); color: var(--white); box-shadow: 0 4px 20px rgba(64,145,108,0.4); }
+  .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--green-pale); border: 1.5px solid rgba(116,198,157,0.5); }
+  .btn-outline:hover { background: rgba(116,198,157,0.1); border-color: var(--green-pale); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 48px; margin-top: 72px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2.4rem; font-weight: 800; color: var(--white); line-height: 1; }
+  .stat-num span { color: var(--green-pale); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
+  .stat-divider { width: 1px; background: rgba(255,255,255,0.12); align-self: stretch; }
+
+  section { padding: 96px 24px; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--green-light); font-weight: 700; margin-bottom: 12px; }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--text); line-height: 1.25; margin-bottom: 16px; }
+  .section-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; line-height: 1.8; }
+
+  .problem { background: var(--white); }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 56px; }
+  .pain-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .pain-item { display: flex; gap: 16px; align-items: flex-start; background: #fff5f5; border: 1px solid #fecaca; padding: 18px 20px; border-radius: 12px; }
+  .pain-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .pain-text { font-size: 0.95rem; color: #7f1d1d; line-height: 1.6; }
+  .solution-box { background: linear-gradient(135deg, var(--green-dark), var(--green-mid)); color: var(--white); padding: 40px 36px; border-radius: 20px; box-shadow: var(--shadow-lg); }
+  .solution-box h3 { font-size: 1.3rem; margin-bottom: 20px; color: var(--green-pale); }
+  .solution-points { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .solution-points li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+  .solution-points li::before { content: '→'; color: var(--green-pale); flex-shrink: 0; font-weight: 700; }
+
+  .architecture { background: var(--bg); }
+  .arch-flow { display: flex; align-items: stretch; gap: 0; margin-top: 56px; overflow-x: auto; }
+  .arch-stage { flex: 1; min-width: 160px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; text-align: center; }
+  .arch-stage + .arch-stage { margin-left: 12px; }
+  .arch-stage-icon { font-size: 2rem; margin-bottom: 12px; }
+  .arch-stage-label { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green-light); font-weight: 700; margin-bottom: 8px; }
+  .arch-stage-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .arch-stage-items { list-style: none; font-size: 0.8rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; }
+  .arch-arrow { display: flex; align-items: center; justify-content: center; color: var(--green-pale); font-size: 1.2rem; padding: 0 4px; flex-shrink: 0; align-self: center; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; justify-content: center; }
+  .tech-tag { background: var(--white); border: 1px solid var(--border); color: var(--green-mid); padding: 7px 16px; border-radius: 100px; font-size: 0.82rem; font-weight: 600; }
+
+  .personas { background: var(--white); }
+  .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
+  .persona-card { border: 1.5px solid var(--border); border-radius: 16px; padding: 32px 28px; background: var(--bg); transition: all 0.3s; }
+  .persona-card:hover { border-color: var(--green-light); box-shadow: var(--shadow); transform: translateY(-4px); }
+  .persona-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .persona-emoji { font-size: 2rem; }
+  .persona-name { font-size: 1.05rem; font-weight: 700; }
+  .persona-role { font-size: 0.82rem; color: var(--text-muted); }
+  .persona-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .ptag { padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+  .ptag-blue { background: #dbeafe; color: #1e40af; }
+  .ptag-green { background: var(--green-ghost); color: var(--green-dark); }
+  .ptag-gold { background: #fef3c7; color: #92400e; }
+  .ptag-purple { background: #ede9fe; color: #5b21b6; }
+  .persona-quote { font-size: 0.88rem; color: var(--text-muted); font-style: italic; border-left: 3px solid var(--green-pale); padding-left: 14px; line-height: 1.7; }
+
+  .results { background: linear-gradient(135deg, var(--green-dark) 0%, #0d2d1e 100%); color: var(--white); }
+  .results .section-title { color: var(--white); }
+  .results .section-desc { color: rgba(255,255,255,0.6); }
+  .results .section-label { color: var(--green-pale); }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .result-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 32px 24px; text-align: center; }
+  .result-num { font-size: 3rem; font-weight: 900; color: var(--green-pale); line-height: 1; margin-bottom: 8px; }
+  .result-unit { font-size: 1.2rem; }
+  .result-label { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin-top: 8px; }
+  .result-label strong { color: rgba(255,255,255,0.85); display: block; }
+  .jd-match { margin-top: 56px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 36px; }
+  .jd-match h3 { font-size: 1rem; color: var(--green-pale); margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase; }
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .match-item { display: flex; gap: 14px; align-items: flex-start; font-size: 0.88rem; }
+  .match-check { color: var(--green-pale); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .match-text { color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .match-text strong { color: var(--white); }
+
+  .esg-scope { background: var(--bg); }
+  .scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .scope-card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: box-shadow 0.3s; }
+  .scope-card:hover { box-shadow: var(--shadow-lg); }
+  .scope-header { padding: 24px 24px 16px; }
+  .scope-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 14px; }
+  .e-color { background: #dcfce7; }
+  .s-color { background: #dbeafe; }
+  .g-color { background: #fef3c7; }
+  .scope-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+  .scope-card p { font-size: 0.85rem; color: var(--text-muted); }
+  .scope-list { border-top: 1px solid var(--border); padding: 16px 24px 20px; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .scope-list li { font-size: 0.83rem; color: var(--text-muted); display: flex; gap: 8px; align-items: center; }
+  .scope-list li::before { content: '·'; color: var(--green-light); font-size: 1.2rem; }
+
+  .framework { background: var(--white); }
+  .fw-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px; justify-content: center; }
+  .fw-chip { padding: 10px 22px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; }
+  .fw-sbti { background: #064e3b; color: #6ee7b7; }
+  .fw-cdp  { background: #1e3a5f; color: #93c5fd; }
+  .fw-djsi { background: #3b1f6e; color: #c4b5fd; }
+  .fw-re100{ background: #78350f; color: #fcd34d; }
+  .fw-gri  { background: #1a4731; color: #86efac; }
+  .fw-tcfd { background: #1c3d5a; color: #7dd3fc; }
+  .fw-ifrs { background: #4a1942; color: #f0abfc; }
+  .fw-sasb { background: #3d2000; color: #fdba74; }
+
+  .cta-section { background: var(--green-ghost); border-top: 1px solid var(--border); text-align: center; padding: 80px 24px; }
+  .cta-links { display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+
+  footer { background: var(--green-dark); color: rgba(255,255,255,0.45); text-align: center; padding: 28px 24px; font-size: 0.82rem; }
+  footer span { color: var(--green-pale); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .problem-grid, .persona-grid, .results-grid, .scope-grid, .match-grid { grid-template-columns: 1fr; }
+    .arch-flow { flex-direction: column; }
+    .hero-stats { gap: 24px; }
+    .stat-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">e<span>Sider</span></div>
+  <div class="nav-links">
+    <a href="#problem">問題背景</a>
+    <a href="#architecture">系統架構</a>
+    <a href="#personas">角色設計</a>
+    <a href="#results">成果數據</a>
+    <a href="#esg">ESG 範疇</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span class="badge-dot"></span>AI × ESG × LINE Bot</div>
+  <h1>永續洞察 <span>eSider</span></h1>
+  <p class="hero-sub">ESG Chatbot — Powered by RAG + GPT-4.1</p>
+  <p class="hero-desc">整合台灣 83 家主要上市櫃公司永續報告書，以 AI 驅動語意查詢，讓 ESG 從業者、投資人、求職者即時獲取精準的永續洞察。</p>
+  <div class="hero-cta">
+    <a href="https://esider-sqii2qz.gamma.site/" class="btn btn-primary" target="_blank">▶ 查看 Demo</a>
+    <a href="https://gamma.app/docs/MVP-z09zmf170atmvtb" class="btn btn-outline" target="_blank">📊 MVP Deck</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">83<span>家</span></div><div class="stat-label">上市櫃公司</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">40,604<span>筆</span></div><div class="stat-label">ESG 語料</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">200<span>份</span></div><div class="stat-label">永續報告書</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">90<span>×</span></div><div class="stat-label">查詢效率提升</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="stat-num">4<span>種</span></div><div class="stat-label">利害關係人角色</div></div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="container">
+    <p class="section-label">Problem & Solution</p>
+    <h2 class="section-title">ESG 資訊碎片化<br>是企業永續工作的最大障礙</h2>
+    <div class="problem-grid">
+      <ul class="pain-list">
+        <li class="pain-item"><span class="pain-icon">📄</span><span class="pain-text"><strong>報告書龐雜</strong>——每份 200–300 頁，跨 GRI/TCFD/IFRS S1S2 多種準則，人工查閱極耗時</span></li>
+        <li class="pain-item"><span class="pain-icon">🔍</span><span class="pain-text"><strong>跨公司比較困難</strong>——SBTi、CDP、DJSI、RE100 認證分散各處，無法即時對比</span></li>
+        <li class="pain-item"><span class="pain-icon">👥</span><span class="pain-text"><strong>不同利害關係人需求不同</strong>——ESG 從業者、投資人、求職者各有不同的資訊需求與語言框架</span></li>
+        <li class="pain-item"><span class="pain-icon">📊</span><span class="pain-text"><strong>ESG × 財務整合缺口</strong>——TCFD 要求氣候財務風險揭露，但兩種資料來源割裂</span></li>
+      </ul>
+      <div class="solution-box">
+        <h3>eSider 的解法</h3>
+        <ul class="solution-points">
+          <li>自動化 ETL Pipeline 結構化 83 家公司 40,604 筆 ESG 數據</li>
+          <li>Pinecone 雲端向量搜尋，語意級 ESG 資訊檢索</li>
+          <li>GPT-4.1 + RAG 架構，回覆精煉至 60 字並標註頁碼來源</li>
+          <li>4 種 Persona 差異化回覆策略，對應不同利害關係人</li>
+          <li>串接 FinMind 台股財務 API，實現 ESG × 財務雙軌查詢</li>
+          <li>LINE Bot 平台部署，降低使用門檻，即時互動</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="architecture" id="architecture">
+  <div class="container">
+    <p class="section-label">System Architecture</p>
+    <h2 class="section-title">端到端 AI ESG<br>資訊平台架構</h2>
+    <p class="section-desc">從永續報告書 PDF 到 LINE Bot 即時回覆，完整 5 層架構由單人設計與實作。</p>
+    <div class="arch-flow">
+      <div class="arch-stage">
+        <div class="arch-stage-icon">📥</div>
+        <div class="arch-stage-label">Layer 1</div>
+        <div class="arch-stage-title">資料採集</div>
+        <ul class="arch-stage-items"><li>Playwright RPA</li><li>TWSE 官方來源</li><li>83家自動下載</li><li>PDF &gt; 1MB 驗證</li></ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-stage">
+        <div class="arch-stage-icon">⚙️</div>
+        <div class="arch-stage-label">Layer 2</div>
+        <div class="arch-stage-title">ETL Pipeline</div>
+        <ul class="arch-stage-items"><li>PyMuPDF 解析</li><li>500字/50字重疊</li><li>BAAI/bge-m3</li><li>RTX 3060 CUDA</li></ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-stage">
+        <div class="arch-stage-icon">🗄️</div>
+        <div class="arch-stage-label">Layer 3</div>
+        <div class="arch-stage-title">雙軌儲存</div>
+        <ul class="arch-stage-items"><li>Pinecone 向量DB</li><li>1024維 cosine</li><li>MongoDB Atlas</li><li>文字+Metadata</li></ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-stage">
+        <div class="arch-stage-icon">🧠</div>
+        <div class="arch-stage-label">Layer 4</div>
+        <div class="arch-stage-title">AI 推理</div>
+        <ul class="arch-stage-items"><li>GPT-4.1 + RAG</li><li>LLM 意圖分類</li><li>4 Persona 策略</li><li>FinMind 串接</li></ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-stage">
+        <div class="arch-stage-icon">💬</div>
+        <div class="arch-stage-label">Layer 5</div>
+        <div class="arch-stage-title">Bot 介面</div>
+        <ul class="arch-stage-items"><li>LINE Messaging</li><li>FastAPI Webhook</li><li>Flex Message</li><li>Rich Menu</li></ul>
+      </div>
+    </div>
+    <div class="tech-tags">
+      <span class="tech-tag">FastAPI</span><span class="tech-tag">GPT-4.1</span><span class="tech-tag">BAAI/bge-m3</span>
+      <span class="tech-tag">Pinecone</span><span class="tech-tag">MongoDB Atlas</span><span class="tech-tag">Azure OpenAI</span>
+      <span class="tech-tag">LINE Bot SDK</span><span class="tech-tag">Playwright</span><span class="tech-tag">FinMind API</span>
+      <span class="tech-tag">PyMuPDF</span><span class="tech-tag">Python 3.11</span><span class="tech-tag">Supabase</span>
+    </div>
+  </div>
+</section>
+
+<section class="personas" id="personas">
+  <div class="container">
+    <p class="section-label">Stakeholder Design</p>
+    <h2 class="section-title">4 種利害關係人<br>差異化回覆策略</h2>
+    <p class="section-desc">同一份 ESG 數據，根據不同角色的語言框架與關注重點，產出完全不同的洞察內容。</p>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-header"><span class="persona-emoji">🌿</span><div><div class="persona-name">ESG 從業者</div><div class="persona-role">永續管理師 / CSR 專員</div></div></div>
+        <div class="persona-tags"><span class="ptag ptag-green">GRI</span><span class="ptag ptag-green">SASB</span><span class="ptag ptag-green">TCFD</span><span class="ptag ptag-green">IFRS S1/S2</span><span class="ptag ptag-green">雙重重大性</span></div>
+        <p class="persona-quote">「引用準則條文與方法論，確信等級、盤查邊界、Scope 1/2/3 分類，回應外部稽核與評鑑機構所需。」</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><span class="persona-emoji">🏦</span><div><div class="persona-name">機構投資人</div><div class="persona-role">基金經理 / 法人研究員</div></div></div>
+        <div class="persona-tags"><span class="ptag ptag-blue">TCFD 氣候財務</span><span class="ptag ptag-blue">供應鏈 ESG</span><span class="ptag ptag-blue">高階薪酬連結</span></div>
+        <p class="persona-quote">「數據導向、引用具體數字與框架，聚焦氣候風險財務影響與 ESG 評鑑表現對股價的連動。」</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><span class="persona-emoji">📈</span><div><div class="persona-name">散戶投資人</div><div class="persona-role">個人投資者</div></div></div>
+        <div class="persona-tags"><span class="ptag ptag-gold">營收 / EPS</span><span class="ptag ptag-gold">配息</span><span class="ptag ptag-gold">三大法人</span><span class="ptag ptag-gold">FinMind 即時</span></div>
+        <p class="persona-quote">「直接口語、條列式 ✅⚠️，ESG 永續評分 + 台股即時財務數據雙軌整合，讓 ESG 與獲利並列判斷。」</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><span class="persona-emoji">💼</span><div><div class="persona-name">求職者</div><div class="persona-role">應徵者 / 職場探索者</div></div></div>
+        <div class="persona-tags"><span class="ptag ptag-purple">薪資福利</span><span class="ptag ptag-purple">DEI</span><span class="ptag ptag-purple">加班文化</span><span class="ptag ptag-purple">職涯發展</span></div>
+        <p class="persona-quote">「口語親切如朋友，從 ESG 社會面（S）解析企業文化、員工福祉與職場環境。」</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results" id="results">
+  <div class="container">
+    <p class="section-label">Outcomes & Impact</p>
+    <h2 class="section-title">量化成果</h2>
+    <p class="section-desc">從零到完整部署的 MVP，由單人全程規劃與執行。</p>
+    <div class="results-grid">
+      <div class="result-card"><div class="result-num">90<span class="result-unit">×</span></div><div class="result-label"><strong>查詢效率提升</strong>語意搜尋 vs. 人工翻閱報告書</div></div>
+      <div class="result-card"><div class="result-num">100<span class="result-unit">%</span></div><div class="result-label"><strong>RMEA 合規率</strong>Reachable / Measurable / Extensive / Adaptable</div></div>
+      <div class="result-card"><div class="result-num">40,604</div><div class="result-label"><strong>結構化 ESG 語料</strong>83 家公司 × 28 個產業</div></div>
+      <div class="result-card"><div class="result-num">200<span class="result-unit">份</span></div><div class="result-label"><strong>永續報告書精讀</strong>每份 200–300 頁，完整 E/S/G 三維解析</div></div>
+      <div class="result-card"><div class="result-num">4<span class="result-unit">種</span></div><div class="result-label"><strong>差異化 Persona</strong>對應 ESG 從業者、投資人、求職者需求</div></div>
+      <div class="result-card"><div class="result-num">1<span class="result-unit">人</span></div><div class="result-label"><strong>全端獨立完成</strong>ETL → Embedding → RAG → Bot → 雲端部署</div></div>
+    </div>
+    <div class="jd-match">
+      <h3>⚡ 對應市場 ESG 職缺核心需求</h3>
+      <div class="match-grid">
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>永續報告書編撰與資料整合</strong><br>200份×200-300頁深度解析，熟悉各產業 GRI/TCFD 揭露格式</span></div>
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>ESG 數據蒐集與結構化</strong><br>83家公司 40,604筆自動化蒐整，完整 E/S/G 三維</span></div>
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>國際評鑑框架掌握</strong><br>SBTi / CDP / DJSI / RE100 / GRI / TCFD / IFRS S1S2</span></div>
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>利害關係人溝通設計</strong><br>4 Persona 差異化資訊傳遞，對應外部查核與評鑑回應</span></div>
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>永續趨勢分析與法規追蹤</strong><br>跨產業資料庫持續更新，即時掌握 IFRS S2 導入進度</span></div>
+        <div class="match-item"><span class="match-check">✓</span><span class="match-text"><strong>ESG 數位化 / AI 系統化</strong><br>獨立建構 AI ESG 資訊平台，端到端全流程</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="esg-scope" id="esg">
+  <div class="container">
+    <p class="section-label">ESG Coverage</p>
+    <h2 class="section-title">E / S / G 三維度<br>完整數據覆蓋</h2>
+    <div class="scope-grid">
+      <div class="scope-card">
+        <div class="scope-header"><div class="scope-icon-wrap e-color">🌍</div><h3>Environmental 環境</h3><p>氣候風險、能源、碳排、生物多樣性</p></div>
+        <ul class="scope-list"><li>溫室氣體盤查 Scope 1/2/3</li><li>再生能源使用比例（RE100）</li><li>碳中和 / 淨零目標（SBTi）</li><li>水資源管理與廢棄物</li><li>TCFD 氣候財務揭露</li><li>能源管理系統 ISO 50001</li></ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-header"><div class="scope-icon-wrap s-color">🤝</div><h3>Social 社會</h3><p>人力資源、供應鏈、人權、社區</p></div>
+        <ul class="scope-list"><li>員工多元共融（DEI）</li><li>職業安全衛生管理</li><li>人權盡職調查</li><li>供應鏈管理（RBA / EcoVadis）</li><li>社會公益與 CSR 活動</li><li>員工培訓與發展</li></ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-header"><div class="scope-icon-wrap g-color">🏛️</div><h3>Governance 治理</h3><p>董事會、法規遵循、透明度</p></div>
+        <ul class="scope-list"><li>董事會組成與獨立性</li><li>ESG 委員會架構</li><li>薪酬與 ESG 績效連結</li><li>CDP / DJSI 評鑑表現</li><li>反貪腐與稽核制度</li><li>IFRS S1/S2 資訊揭露</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="framework" id="framework">
+  <div class="container" style="text-align:center;">
+    <p class="section-label">Frameworks Covered</p>
+    <h2 class="section-title">涵蓋 8 大國際 ESG 框架</h2>
+    <p class="section-desc" style="margin:0 auto 0;">資料庫整合 SBTi、CDP、DJSI、RE100 認證資料，並完整解讀各報告書中 GRI、TCFD、IFRS S1/S2、SASB 的揭露內容。</p>
+    <div class="fw-grid">
+      <span class="fw-chip fw-sbti">🌱 SBTi</span><span class="fw-chip fw-cdp">💧 CDP</span>
+      <span class="fw-chip fw-djsi">📊 DJSI</span><span class="fw-chip fw-re100">⚡ RE100</span>
+      <span class="fw-chip fw-gri">📋 GRI</span><span class="fw-chip fw-tcfd">🌡️ TCFD</span>
+      <span class="fw-chip fw-ifrs">📐 IFRS S1/S2</span><span class="fw-chip fw-sasb">🏭 SASB</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <p class="section-label">Get Started</p>
+    <h2 class="section-title" style="font-size:2rem;">立即體驗 eSider 永續洞察查詢</h2>
+    <p style="color:var(--text-muted); margin-top:12px;">加入 LINE Bot，選擇你的角色，開始 ESG 智能查詢</p>
+    <div class="cta-links">
+      <a href="https://esider-sqii2qz.gamma.site/" class="btn btn-primary" target="_blank">▶ Demo Site</a>
+      <a href="https://gamma.app/docs/MVP-z09zmf170atmvtb" class="btn btn-outline" target="_blank">📊 MVP Deck</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by <span>Sam Joseph</span> · ESG Chatbot eSider · 2024–2025 · FastAPI + GPT-4.1 + Pinecone + LINE Bot
+</footer>
+
+</body>
+</html>
