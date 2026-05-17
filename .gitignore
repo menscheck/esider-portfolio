@@ -12,3 +12,12 @@ bot_stdout.log
 bot_stderr.log
 
 .env
+
+# 敏感設定檔
+scripts/bedrock_config.json
+scripts/*.json
+config/*.json
+**/*config*.json
+**/*secret*.json
+**/*credentials*.json
+**/*key*.json
