@@ -1,0 +1,17 @@
+Title: TWSE ESG平台下載方式
+Category: download
+Tags: download, playwright, twse, pdf
+
+網址：https://esggenplus.twse.com.tw/inquiry/report?lang=zh-TW
+必填欄位：市場別（下拉）、報告年度（下拉）
+可選欄位：產業別（不選預設全選）、公司代號（autocomplete）
+
+Playwright關鍵步驟：
+1. 市場別/年度：用 page.evaluate() 找div文字精確匹配點選
+2. 公司代號：輸入後等1000ms點autocomplete第一項
+3. 查詢按鈕：等變藍才點
+4. 結果：點 {code}-{公司名} 展開，點「下載 PDF」
+
+存檔路徑：data/reports/{公司名}/{公司名}_ESG_2024.pdf
+有效大小：>1MB
+腳本：download_p1_batch.py

@@ -55,6 +55,16 @@ FINANCIAL_KEYWORDS: dict[str, str] = {
     "便宜": "TaiwanStockPER",
     "貴不貴": "TaiwanStockPER",
     "股價": "TaiwanStockPrice",
+    "收盤價": "TaiwanStockPrice",
+    "收盤": "TaiwanStockPrice",
+    "開盤價": "TaiwanStockPrice",
+    "開盤": "TaiwanStockPrice",
+    "最高價": "TaiwanStockPrice",
+    "最低價": "TaiwanStockPrice",
+    "現在股價": "TaiwanStockPrice",
+    "目前股價": "TaiwanStockPrice",
+    "今天股價": "TaiwanStockPrice",
+    "昨天股價": "TaiwanStockPrice",
     "漲跌": "TaiwanStockPrice",
     "K線": "TaiwanStockPrice",
     "月K": "TaiwanStockPrice",
@@ -279,8 +289,9 @@ def detect_market_intent(query: str) -> list[str]:
 def detect_compare_windows(query: str) -> dict[str, bool]:
     q = query.replace(" ", "")
     return {
-        "DOD": any(x in q for x in ["DOD", "日對日", "昨日", "前一日", "當日比昨日", "與昨天"]),
-        "WOW": any(x in q for x in ["WOW", "週對週", "上週", "近一週", "一週"]),
+        "DOD": any(x in q for x in ["DOD", "日對日", "昨日", "前一日", "當日比昨日", "與昨天",
+                                     "昨天", "前天", "今天", "今日", "當日", "最新", "現在", "目前"]),
+        "WOW": any(x in q for x in ["WOW", "週對週", "上週", "近一週", "一週", "這週", "本週"]),
         "MOM": any(x in q for x in ["MOM", "月對月", "上月", "近一個月", "本月比上月"]),
         "SOS": any(x in q for x in ["SOS", "半年對半年", "上半年", "近半年", "半年度"]),
         "YOY": any(x in q for x in ["YOY", "年對年", "去年", "近一年", "一年內"]),

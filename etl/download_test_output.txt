@@ -1,0 +1,531 @@
+
+==== 台積電 ====
+ESG首頁: https://esg.tsmc.com/zh-TW
+台積電: Playwright 讀取失敗 - Timeout 5000ms exceeded.
+=========================== logs ===========================
+"commit" event fired
+"domcontentloaded" event fired
+"load" event fired
+============================================================
+Stage3: 嘗試按鈕下載策略
+Button策略: 找到 0 個下載按鈕/連結
+Button策略未找到可下載 PDF
+Stage4: 嘗試 Google fallback
+Google fallback 查詢: 台積電 ESG永續報告書 2024 filetype:pdf
+Google fallback 也未找到 PDF
+本次找到 PDF 的階段: None
+總共候選PDF: 0
+未選擇任何PDF下載
+
+==== 玉山金控 ====
+ESG首頁: https://www.esunfhc.com/zh-tw/sustainability
+Stage1: 首頁找到 2 直接PDF, 5 個報告書/下載入口
+Stage1.5: 使用報告入口連結進行內部頁面搜尋
+Stage1 入口連結:
+  - 公司年報 -> https://www.esunfhc.com/zh-tw/investor-relations/company-overview/annual-reports
+  - 每月營收資訊 -> https://www.esunfhc.com/zh-tw/investor-relations/financials/monthly-operating-report
+  - 財務報告 -> https://www.esunfhc.com/zh-tw/investor-relations/financials/financial-reports
+  - 資源中心 -> https://www.esunfhc.com/zh-tw/esg/resource-center/report
+  - 報告書 -> https://www.esunfhc.com/zh-tw/esg/resource-center/report
+Stage1.5: 第 1 層，處理 5 個連結
+  訪問: https://www.esunfhc.com/zh-tw/investor-relations/company-overview/annual-reports
+    找到 34 個PDF
+    擴展 5 個內部連結
+  訪問: https://www.esunfhc.com/zh-tw/investor-relations/financials/monthly-operating-report
+    找到 2 個PDF
+    擴展 5 個內部連結
+  訪問: https://www.esunfhc.com/zh-tw/investor-relations/financials/financial-reports
+    找到 147 個PDF
+    擴展 5 個內部連結
+  訪問: https://www.esunfhc.com/zh-tw/esg/resource-center/report
+    找到 2 個PDF
+    擴展 5 個內部連結
+Stage1.5: 第 2 層，處理 5 個連結
+  訪問: https://www.esunfhc.com/zh-tw/investor-relations/company-overview/annual-reports#accesskey-U
+    找到 34 個PDF
+  訪問: https://www.esunfhc.com/zh-tw/domain
+    找到 2 個PDF
+  訪問: https://www.esunfhc.com/zh-tw/stakeholders
+    找到 2 個PDF
+  訪問: https://www.esunfhc.com/en/investor-relations/company-overview/annual-reports
+    找到 34 個PDF
+  訪問: https://www.esunfhc.com/zh-tw/
+    找到 2 個PDF
+本次找到 PDF 的階段: Stage1
+總共候選PDF: 209
+  候選 1: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Mega-Footer/USA_PAC.pdf score=0 reason=無明顯優先條件
+  候選 2: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Mega-Footer/aml-questionnaire.pdf score=0 reason=無明顯優先條件
+  候選 3: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Mega-Footer/USA_PAC.pdf score=0 reason=無明顯優先條件
+  候選 4: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Mega-Footer/aml-questionnaire.pdf score=0 reason=無明顯優先條件
+  候選 5: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2024.pdf score=-9999 reason=排除條件
+  候選 6: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2023.pdf score=-9999 reason=排除條件
+  候選 7: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2022.pdf score=-9999 reason=排除條件
+  候選 8: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2021/2021ESUNFHC_CN.pdf score=-9999 reason=排除條件
+  候選 9: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2020/2020ESUNFHC_cn.pdf score=-9999 reason=排除條件
+  候選 10: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2019/2019ESUNFHC_CN_0511.pdf score=-9999 reason=排除條件
+  候選 11: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2018/2018ESUNFHC_CN.pdf score=-9999 reason=排除條件
+  候選 12: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2017.pdf score=-9999 reason=排除條件
+  候選 13: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2016.pdf score=-9999 reason=排除條件
+  候選 14: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2015.pdf score=-9999 reason=排除條件
+  候選 15: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2014.pdf score=-9999 reason=排除條件
+  候選 16: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2013.pdf score=-9999 reason=排除條件
+  候選 17: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2012.pdf score=-9999 reason=排除條件
+  候選 18: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2011.pdf score=-9999 reason=排除條件
+  候選 19: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2010.pdf score=-9999 reason=排除條件
+  候選 20: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2009.pdf score=-9999 reason=排除條件
+  候選 21: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN_Bank_Annual_Report_2024.pdf score=-9999 reason=排除條件
+  候選 22: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN_Bank_Annual_Report_2023.pdf score=-9999 reason=排除條件
+  候選 23: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN_Bank_Annual_Report_2022.pdf score=-9999 reason=排除條件
+  候選 24: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2021/2021ESUNBANK_CN.pdf score=-9999 reason=排除條件
+  候選 25: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2020/2020ESUNBANK_CN.pdf score=-9999 reason=排除條件
+  候選 26: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2019/esun-bank-annual-report-20190416cn.pdf score=-9999 reason=排除條件
+  候選 27: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN-Bank-Annual-Report-2018CN.pdf score=-9999 reason=排除條件
+  候選 28: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN-Bank-Annual-Report-2017.pdf score=-9999 reason=排除條件
+  候選 29: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2016.pdf score=-9999 reason=排除條件
+  候選 30: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2015.pdf score=-9999 reason=排除條件
+  候選 31: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2014.pdf score=-9999 reason=排除條件
+  候選 32: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2013.pdf score=-9999 reason=排除條件
+  候選 33: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2012.pdf score=-9999 reason=排除條件
+  候選 34: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2011.pdf score=-9999 reason=排除條件
+  候選 35: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2010.pdf score=-9999 reason=排除條件
+  候選 36: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_2009.pdf score=-9999 reason=排除條件
+  候選 37: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/FHC_2025Q4_Con_cn.pdf score=-9999 reason=排除條件
+  候選 38: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/FHC_2025Q3_Con_cn.pdf score=-9999 reason=排除條件
+  候選 39: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/FHC_2025Q2_con_cn.pdf score=-9999 reason=排除條件
+  候選 40: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/FHC_25Q1_cn_con.pdf score=-9999 reason=排除條件
+  候選 41: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/FHC113Q4con.pdf score=-9999 reason=排除條件
+  候選 42: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/FHC-3Q24-Con.pdf score=-9999 reason=排除條件
+  候選 43: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/FHC_24Q2_cn_con.pdf score=-9999 reason=排除條件
+  候選 44: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/FHC_24Q1_cn_con.pdf score=-9999 reason=排除條件
+  候選 45: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/fhc-2023.pdf score=-9999 reason=排除條件
+  候選 46: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/112Q3-FHC.pdf score=-9999 reason=排除條件
+  候選 47: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/fhc-112Q2.pdf score=-9999 reason=排除條件
+  候選 48: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/fhc-112Q1-ch_new.pdf score=-9999 reason=排除條件
+  候選 49: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/230224Q4.pdf score=-9999 reason=排除條件
+  候選 50: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/221111--111Q3-FHC-CH.pdf score=-9999 reason=排除條件
+  候選 51: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/220819--111Q2.pdf score=-9999 reason=排除條件
+  候選 52: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/220513-111Q1.pdf score=-9999 reason=排除條件
+  候選 53: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2021/ESUN_FHC_4Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 54: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2021/ESUN_FHC_3Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 55: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2021/ESUN_FHC_2Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 56: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2021/ESUN_FHC_1Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 57: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2020/ESUN_FHC_4Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 58: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2020/ESUN_FHC_3Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 59: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2020/ESUN_FHC_2Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 60: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2020/ESUN_FHC_1Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 61: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2019/ESUN_FHC_4Q19_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 62: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2019/ESUN_FHC_3Q19_CN.pdf score=-9999 reason=排除條件
+  候選 63: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2019/ESUN_FHC_2Q19_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 64: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2019/ESUN-FHC-1Q19_CN.pdf score=-9999 reason=排除條件
+  候選 65: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/ESUN-FHC-2018Consolidated.pdf score=-9999 reason=排除條件
+  候選 66: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2018/2018_3Q_ESUN_FHC.pdf score=-9999 reason=排除條件
+  候選 67: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2018/2018_2Q_ESUN_FHC.pdf score=-9999 reason=排除條件
+  候選 68: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/2018-1Q-ESUN-FHC.pdf score=-9999 reason=排除條件
+  候選 69: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/ESUN-FHC-106-4Q.pdf score=-9999 reason=排除條件
+  候選 70: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/ESUN-FHC-2017-3QCH.pdf score=-9999 reason=排除條件
+  候選 71: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/ESUNFHC_2017-1H.pdf score=-9999 reason=排除條件
+  候選 72: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/esunfhc_106Q1.pdf score=-9999 reason=排除條件
+  候選 73: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2016/esunfhc_105Q4.pdf score=-9999 reason=排除條件
+  候選 74: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2016/esunfhc_105Q3.pdf score=-9999 reason=排除條件
+  候選 75: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2016/esunfhc_105Q2.pdf score=-9999 reason=排除條件
+  候選 76: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2016/esunfhc_1_105Q1.pdf score=-9999 reason=排除條件
+  候選 77: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2015/esunfhc_company_104Q4.pdf score=-9999 reason=排除條件
+  候選 78: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2015/esunfhc_company_104Q3.pdf score=-9999 reason=排除條件
+  候選 79: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2015/esunfhc_company_104Q2.pdf score=-9999 reason=排除條件
+  候選 80: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2015/esunfhc_company_104Q1.pdf score=-9999 reason=排除條件
+  候選 81: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2014/esunfhc_company_103Q4.pdf score=-9999 reason=排除條件
+  候選 82: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2014/esunfhc_company_103Q3.pdf score=-9999 reason=排除條件
+  候選 83: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2014/esunfhc_company_103Q2.pdf score=-9999 reason=排除條件
+  候選 84: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2014/esunfhc_company_103Q1.pdf score=-9999 reason=排除條件
+  候選 85: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2013/esunfhc_company_102Q4.pdf score=-9999 reason=排除條件
+  候選 86: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2013/esunfhc_company_102Q3.pdf score=-9999 reason=排除條件
+  候選 87: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2013/esunfhc_company_1021H.pdf score=-9999 reason=排除條件
+  候選 88: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2013/esunfhc_company_102Q1.pdf score=-9999 reason=排除條件
+  候選 89: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2012/esunfhc_company_101Q4.pdf score=-9999 reason=排除條件
+  候選 90: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2012/esunfhc_company_101Q3.pdf score=-9999 reason=排除條件
+  候選 91: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2012/esunfhc_company_101Q2.pdf score=-9999 reason=排除條件
+  候選 92: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2012/esunfhc_company_101Q1.pdf score=-9999 reason=排除條件
+  候選 93: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2011/esunfhc_company_100Q4.pdf score=-9999 reason=排除條件
+  候選 94: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2011/esunfhc_company_100Q3.pdf score=-9999 reason=排除條件
+  候選 95: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2011/esunfhc_company_1001H.pdf score=-9999 reason=排除條件
+  候選 96: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2011/esunfhc_company_100Q1.pdf score=-9999 reason=排除條件
+  候選 97: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/Bank_2025Q4_Con_cn.pdf score=-9999 reason=排除條件
+  候選 98: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/Bank_2025Q4_sta_cn.pdf score=-9999 reason=排除條件
+  候選 99: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/Bank_2025Q3_Con_cn.pdf score=-9999 reason=排除條件
+  候選 100: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/Bank_2025Q2_con_cn.pdf score=-9999 reason=排除條件
+  候選 101: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/Bank_2025Q2_sta_cn.pdf score=-9999 reason=排除條件
+  候選 102: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2025/bank_25Q1_cn_con.pdf score=-9999 reason=排除條件
+  候選 103: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/Bank113Q4con.pdf score=-9999 reason=排除條件
+  候選 104: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/Bank113Q4sta.pdf score=-9999 reason=排除條件
+  候選 105: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/Bank-3Q24-Con.pdf score=-9999 reason=排除條件
+  候選 106: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/Bank_24Q2_cn_con.pdf score=-9999 reason=排除條件
+  候選 107: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/Bank_24Q2_cn_sta.pdf score=-9999 reason=排除條件
+  候選 108: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2024/bank_24Q1_cn_con.pdf score=-9999 reason=排除條件
+  候選 109: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/bank-2023-con.pdf score=-9999 reason=排除條件
+  候選 110: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/bank-2023-sta.pdf score=-9999 reason=排除條件
+  候選 111: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/112Q3-Bank.pdf score=-9999 reason=排除條件
+  候選 112: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2022/bank-112Q2.pdf score=-9999 reason=排除條件
+  候選 113: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2022/bank_112Q2_st.pdf score=-9999 reason=排除條件
+  候選 114: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2023/bank-112Q1-ch_new.pdf score=-9999 reason=排除條件
+  候選 115: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2022/230302--111Q4-con.pdf score=-9999 reason=排除條件
+  候選 116: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2022/230302--111Q4-sta.pdf score=-9999 reason=排除條件
+  候選 117: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/221111--111Q3-Bank-CH.pdf score=-9999 reason=排除條件
+  候選 118: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/220819--111Q2-Bank-con.pdf score=-9999 reason=排除條件
+  候選 119: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2022/220819--111Q2-Bank-Sta.pdf score=-9999 reason=排除條件
+  候選 120: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2022/220513-111Q1.pdf score=-9999 reason=排除條件
+  候選 121: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2021/ESUN_BANK_4Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 122: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2021/220517-110.pdf score=-9999 reason=排除條件
+  候選 123: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2021/ESUN_BANK_3Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 124: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2021/ESUN_BANK_CONSOLIDATED_CN2.pdf score=-9999 reason=排除條件
+  候選 125: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2021/ESUN_BANK_2Q21_STANDALONE_CN.pdf score=-9999 reason=排除條件
+  候選 126: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2021/ESUN_BANK_1Q21_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 127: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_4Q20_STANDALONE_CN.pdf score=-9999 reason=排除條件
+  候選 128: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_4Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 129: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_3Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 130: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_2Q20_STANDALONE_CN.pdf score=-9999 reason=排除條件
+  候選 131: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_2Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 132: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2020/ESUN_BANK_1Q20_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 133: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN_BANK_4Q19_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 134: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN_BANK_4Q19_STANDALONE_CN.pdf score=-9999 reason=排除條件
+  候選 135: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN_BANK_3Q19_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 136: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN_BANK_2Q19_STANDALONE_CN.pdf score=-9999 reason=排除條件
+  候選 137: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN_BANK_2Q19_CONSOLIDATED_CN.pdf score=-9999 reason=排除條件
+  候選 138: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2019/ESUN-BANK-1Q19_CN.pdf score=-9999 reason=排除條件
+  候選 139: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/ESUN-Bank-2018Consolidated.pdf score=-9999 reason=排除條件
+  候選 140: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/ESUN-Bank-2018Standalone.pdf score=-9999 reason=排除條件
+  候選 141: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2018/2018_3Q_ESUN_Bank.pdf score=-9999 reason=排除條件
+  候選 142: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2018/ESUN_Bank_standalone107.pdf score=-9999 reason=排除條件
+  候選 143: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2018/2018_2Q_ESUN_Bank.pdf score=-9999 reason=排除條件
+  候選 144: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/2018-1Q-ESUN-Bank.pdf score=-9999 reason=排除條件
+  候選 145: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/ESUN-Bank-106-4Q.pdf score=-9999 reason=排除條件
+  候選 146: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/zh_TW/2017/ESUN-Bank-standalone106-4Q.pdf score=-9999 reason=排除條件
+  候選 147: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2017/ESUN-Bank-2017-3QCH.pdf score=-9999 reason=排除條件
+  候選 148: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2017/ESUNBank_2017-1H_2.pdf score=-9999 reason=排除條件
+  候選 149: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2017/ESUNBank_2017-1H.pdf score=-9999 reason=排除條件
+  候選 150: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2017/esunbank_106Q1.pdf score=-9999 reason=排除條件
+  候選 151: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2016/esunbank_105Q4_2.pdf score=-9999 reason=排除條件
+  候選 152: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2016/esunbank_105Q4_1.pdf score=-9999 reason=排除條件
+  候選 153: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2016/esunbank_105Q3.pdf score=-9999 reason=排除條件
+  候選 154: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2016/esunbank_105Q2.pdf score=-9999 reason=排除條件
+  候選 155: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2016/esunbank_105Q2_2.pdf score=-9999 reason=排除條件
+  候選 156: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2016/esunbank_1_105Q1.pdf score=-9999 reason=排除條件
+  候選 157: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q415_ESUN_Bank_chi_ind.pdf score=-9999 reason=排除條件
+  候選 158: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q415_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 159: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q315_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 160: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q215_ESUN_Bank_chi_ind.pdf score=-9999 reason=排除條件
+  候選 161: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q215_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 162: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2015/Q115_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 163: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q414_ESUN_Bank_chi_ind.pdf score=-9999 reason=排除條件
+  候選 164: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q414_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 165: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q314_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 166: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q214_ESUN_Bank_chi_ind.pdf score=-9999 reason=排除條件
+  候選 167: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q214_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 168: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2014/Q114_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 169: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2013/Q413_ESUN_Bank_chi_ind.pdf score=-9999 reason=排除條件
+  候選 170: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2013/Q413_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 171: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2013/Q313_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 172: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2013/Q213_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 173: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2013/Q113_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 174: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2012/Q412_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 175: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2012/Q312_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 176: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2012/Q212_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 177: https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNBANK/zh_TW/2012/Q112_ESUN_Bank_chi.pdf score=-9999 reason=排除條件
+  候選 178: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2024.pdf score=-9999 reason=排除條件
+  候選 179: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2023.pdf score=-9999 reason=排除條件
+  候選 180: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_2022.pdf score=-9999 reason=排除條件
+  候選 181: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2021/2021ESUNFHC_EN.pdf score=-9999 reason=排除條件
+  候選 182: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2020/2020ESUNFHC_EN.pdf score=-9999 reason=排除條件
+  候選 183: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2019/2019ESUNFHC_EN_0511.pdf score=-9999 reason=排除條件
+  候選 184: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/ESUNFHC/en/2018/2018ESUNFHC_EN.pdf score=-9999 reason=排除條件
+  候選 185: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2017.pdf score=-9999 reason=排除條件
+  候選 186: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2016.pdf score=-9999 reason=排除條件
+  候選 187: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2015.pdf score=-9999 reason=排除條件
+  候選 188: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2014.pdf score=-9999 reason=排除條件
+  候選 189: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2013.pdf score=-9999 reason=排除條件
+  候選 190: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2012.pdf score=-9999 reason=排除條件
+  候選 191: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2011.pdf score=-9999 reason=排除條件
+  候選 192: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2010.pdf score=-9999 reason=排除條件
+  候選 193: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-FHC/esunfhc_annual_en_2009.pdf score=-9999 reason=排除條件
+  候選 194: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN_Bank_Annual_Report_2024.pdf score=-9999 reason=排除條件
+  候選 195: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN_Bank_Annual_Report_2023.pdf score=-9999 reason=排除條件
+  候選 196: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/annual-report_2022_EN.pdf score=-9999 reason=排除條件
+  候選 197: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/annual-report_2021_EN.pdf score=-9999 reason=排除條件
+  候選 198: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/Financials/Financial-Reports/2020/2020ESUNBANK_EN.pdf score=-9999 reason=排除條件
+  候選 199: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/2019-esunbank-annual-report.pdf score=-9999 reason=排除條件
+  候選 200: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/2018-ESUN-Bank-annual-report.pdf score=-9999 reason=排除條件
+  候選 201: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/ESUN-Bank-Annual-Report-2017.pdf score=-9999 reason=排除條件
+  候選 202: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2016.pdf score=-9999 reason=排除條件
+  候選 203: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2015.pdf score=-9999 reason=排除條件
+  候選 204: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2014.pdf score=-9999 reason=排除條件
+  候選 205: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2013.pdf score=-9999 reason=排除條件
+  候選 206: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2012.pdf score=-9999 reason=排除條件
+  候選 207: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2011.pdf score=-9999 reason=排除條件
+  候選 208: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2010.pdf score=-9999 reason=排除條件
+  候選 209: https://www.esunbank.com/en/-/media/ESUNFHC/Files/Investor-Relations/About-ESUN/Annual-Reports/Annual-Reports-Bank/esunbank_annual_en_2009.pdf score=-9999 reason=排除條件
+未選擇任何PDF下載
+
+==== 統一超商 ====
+ESG首頁: https://www.7-11.com.tw/company/esg/reports.aspx
+Stage1: 首頁找到 234 直接PDF, 4 個報告書/下載入口
+Stage1.5: 使用報告入口連結進行內部頁面搜尋
+Stage1 入口連結:
+  - 永續報告書 -> https://www.7-11.com.tw/company/esg/reports.aspx
+  - EN -> https://www.7-11.com.tw/company/esg/en/reports.aspx
+  - 永續報告書 -> https://www.7-11.com.tw/company/esg/news.aspx
+  - 永續報告書 -> https://www.7-11.com.tw/company/esg/reports.aspx
+Stage1.5: 第 1 層，處理 4 個連結
+  訪問: https://www.7-11.com.tw/company/esg/en/reports.aspx
+    找到 242 個PDF
+    擴展 5 個內部連結
+  訪問: https://www.7-11.com.tw/company/esg/news.aspx
+    找到 0 個PDF
+    擴展 5 個內部連結
+Stage1.5: 第 2 層，處理 5 個連結
+  訪問: https://www.7-11.com.tw/company/esg/en/index.aspx
+    找到 0 個PDF
+  訪問: https://www.7-11.com.tw/company/esg/en/influence.aspx
+    找到 0 個PDF
+  訪問: https://www.7-11.com.tw/company/esg/en/esgplan.aspx
+    找到 0 個PDF
+  訪問: https://www.7-11.com.tw/company/esg/en/targetsandprogress.aspx
+    找到 0 個PDF
+  訪問: https://www.7-11.com.tw/company/esg/en/sdgs.aspx
+    找到 0 個PDF
+本次找到 PDF 的階段: Stage1
+總共候選PDF: 234
+  候選 1: https://www.7-11.com.tw/company/esg/images/report/2024_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 2: https://www.7-11.com.tw/company/esg/images/report/2024_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 3: https://www.7-11.com.tw/company/esg/images/report/2024_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 4: https://www.7-11.com.tw/company/esg/images/report/2024_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 5: https://www.7-11.com.tw/company/esg/images/report/2024_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 6: https://www.7-11.com.tw/company/esg/images/report/2024_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 7: https://www.7-11.com.tw/company/esg/images/report/2024_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 8: https://www.7-11.com.tw/company/esg/images/report/2024_add_CH.pdf score=-9999 reason=排除條件
+  候選 9: https://www.7-11.com.tw/company/esg/images/report/n2024_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 10: https://www.7-11.com.tw/company/esg/images/report/2024_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 11: https://www.7-11.com.tw/company/esg/images/report/2024_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 12: https://www.7-11.com.tw/company/esg/images/report/n2024_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 13: https://www.7-11.com.tw/company/esg/images/report/2024_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 14: https://www.7-11.com.tw/company/esg/images/report/n2024_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 15: https://www.7-11.com.tw/company/esg/images/report/2024_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 16: https://www.7-11.com.tw/company/esg/images/report/2024_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 17: https://www.7-11.com.tw/company/esg/images/report/2024_add_EN.pdf score=-9999 reason=排除條件
+  候選 18: https://www.7-11.com.tw/company/esg/images/report/new2024_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 19: https://www.7-11.com.tw/company/esg/images/report/PCSC_2024_ESG_Insight.pdf score=-9999 reason=排除條件
+  候選 20: https://www.7-11.com.tw/company/esg/images/report/2023_Climate-re_lated_Disclosures_Report_CH.pdf score=-9999 reason=排除條件
+  候選 21: https://www.7-11.com.tw/company/esg/images/report/2023_Climate-re_lated_Disclosures_Report_EN.pdf score=-9999 reason=排除條件
+  候選 22: https://www.7-11.com.tw/company/esg/images/report/PCSC_2023_ESG_Insight.pdf score=-9999 reason=排除條件
+  候選 23: https://www.7-11.com.tw/company/esg/images/report/2023_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 24: https://www.7-11.com.tw/company/esg/images/report/2023_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 25: https://www.7-11.com.tw/company/esg/images/report/2023_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 26: https://www.7-11.com.tw/company/esg/images/report/2023_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 27: https://www.7-11.com.tw/company/esg/images/report/2023_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 28: https://www.7-11.com.tw/company/esg/images/report/2023_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 29: https://www.7-11.com.tw/company/esg/images/report/2023_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 30: https://www.7-11.com.tw/company/esg/images/report/2023_add_CH.pdf score=-9999 reason=排除條件
+  候選 31: https://www.7-11.com.tw/company/esg/images/report/2023_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 32: https://www.7-11.com.tw/company/esg/images/report/2023_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 33: https://www.7-11.com.tw/company/esg/images/report/2023_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 34: https://www.7-11.com.tw/company/esg/images/report/2023_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 35: https://www.7-11.com.tw/company/esg/images/report/2023_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 36: https://www.7-11.com.tw/company/esg/images/report/2023_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 37: https://www.7-11.com.tw/company/esg/images/report/2023_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 38: https://www.7-11.com.tw/company/esg/images/report/2023_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 39: https://www.7-11.com.tw/company/esg/images/report/2023_add_EN.pdf score=-9999 reason=排除條件
+  候選 40: https://www.7-11.com.tw/company/esg/images/report/2023_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 41: https://www.7-11.com.tw/company/esg/images/report/2022_PCSC_ESG_INSIGHT_REPORT.pdf score=-9999 reason=排除條件
+  候選 42: https://www.7-11.com.tw/company/esg/images/report/2022_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 43: https://www.7-11.com.tw/company/esg/images/report/2022_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 44: https://www.7-11.com.tw/company/esg/images/report/2022_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 45: https://www.7-11.com.tw/company/esg/images/report/2022_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 46: https://www.7-11.com.tw/company/esg/images/report/2022_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 47: https://www.7-11.com.tw/company/esg/images/report/2022_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 48: https://www.7-11.com.tw/company/esg/images/report/2022_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 49: https://www.7-11.com.tw/company/esg/images/report/2022_add_CH.pdf score=-9999 reason=排除條件
+  候選 50: https://www.7-11.com.tw/company/esg/images/report/2022_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 51: https://www.7-11.com.tw/company/esg/images/report/2022_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 52: https://www.7-11.com.tw/company/esg/images/report/2022_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 53: https://www.7-11.com.tw/company/esg/images/report/2022_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 54: https://www.7-11.com.tw/company/esg/images/report/2022_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 55: https://www.7-11.com.tw/company/esg/images/report/2022_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 56: https://www.7-11.com.tw/company/esg/images/report/2022_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 57: https://www.7-11.com.tw/company/esg/images/report/2022_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 58: https://www.7-11.com.tw/company/esg/images/report/2022_add_EN.pdf score=-9999 reason=排除條件
+  候選 59: https://www.7-11.com.tw/company/esg/images/report/2022_report_all_EN1.pdf score=-9999 reason=排除條件
+  候選 60: https://www.7-11.com.tw/company/esg/images/report/2021_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 61: https://www.7-11.com.tw/company/esg/images/report/2021_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 62: https://www.7-11.com.tw/company/esg/images/report/2021_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 63: https://www.7-11.com.tw/company/esg/images/report/2021_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 64: https://www.7-11.com.tw/company/esg/images/report/2021_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 65: https://www.7-11.com.tw/company/esg/images/report/2021_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 66: https://www.7-11.com.tw/company/esg/images/report/2021_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 67: https://www.7-11.com.tw/company/esg/images/report/2021_add_CH.pdf score=-9999 reason=排除條件
+  候選 68: https://www.7-11.com.tw/company/esg/images/report/2021_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 69: https://www.7-11.com.tw/company/esg/images/report/2021_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 70: https://www.7-11.com.tw/company/esg/images/report/2021_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 71: https://www.7-11.com.tw/company/esg/images/report/2021_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 72: https://www.7-11.com.tw/company/esg/images/report/2021_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 73: https://www.7-11.com.tw/company/esg/images/report/2021_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 74: https://www.7-11.com.tw/company/esg/images/report/2021_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 75: https://www.7-11.com.tw/company/esg/images/report/2021_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 76: https://www.7-11.com.tw/company/esg/images/report/2021_add_EN.pdf score=-9999 reason=排除條件
+  候選 77: https://www.7-11.com.tw/company/esg/images/report/2021_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 78: https://www.7-11.com.tw/company/esg/images/report/2020_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 79: https://www.7-11.com.tw/company/esg/images/report/2020_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 80: https://www.7-11.com.tw/company/esg/images/report/2020_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 81: https://www.7-11.com.tw/company/esg/images/report/2020_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 82: https://www.7-11.com.tw/company/esg/images/report/2020_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 83: https://www.7-11.com.tw/company/esg/images/report/2020_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 84: https://www.7-11.com.tw/company/esg/images/report/2020_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 85: https://www.7-11.com.tw/company/esg/images/report/2020_add_CH.pdf score=-9999 reason=排除條件
+  候選 86: https://www.7-11.com.tw/company/esg/images/report/2020_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 87: https://www.7-11.com.tw/company/esg/images/report/2020_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 88: https://www.7-11.com.tw/company/esg/images/report/2020_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 89: https://www.7-11.com.tw/company/esg/images/report/2020_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 90: https://www.7-11.com.tw/company/esg/images/report/2020_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 91: https://www.7-11.com.tw/company/esg/images/report/2020_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 92: https://www.7-11.com.tw/company/esg/images/report/2020_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 93: https://www.7-11.com.tw/company/esg/images/report/2020_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 94: https://www.7-11.com.tw/company/esg/images/report/2020_add_EN.pdf score=-9999 reason=排除條件
+  候選 95: https://www.7-11.com.tw/company/esg/images/report/2020_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 96: https://www.7-11.com.tw/company/esg/images/report/2019_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 97: https://www.7-11.com.tw/company/esg/images/report/2019_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 98: https://www.7-11.com.tw/company/esg/images/report/2019_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 99: https://www.7-11.com.tw/company/esg/images/report/2019_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 100: https://www.7-11.com.tw/company/esg/images/report/2019_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 101: https://www.7-11.com.tw/company/esg/images/report/2019_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 102: https://www.7-11.com.tw/company/esg/images/report/2019_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 103: https://www.7-11.com.tw/company/esg/images/report/2019_add_CH.pdf score=-9999 reason=排除條件
+  候選 104: https://www.7-11.com.tw/company/esg/images/report/2019_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 105: https://www.7-11.com.tw/company/esg/images/report/2019_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 106: https://www.7-11.com.tw/company/esg/images/report/2019_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 107: https://www.7-11.com.tw/company/esg/images/report/2019_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 108: https://www.7-11.com.tw/company/esg/images/report/2019_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 109: https://www.7-11.com.tw/company/esg/images/report/2019_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 110: https://www.7-11.com.tw/company/esg/images/report/2019_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 111: https://www.7-11.com.tw/company/esg/images/report/2019_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 112: https://www.7-11.com.tw/company/esg/images/report/2019_add_EN.pdf score=-9999 reason=排除條件
+  候選 113: https://www.7-11.com.tw/company/esg/images/report/2019_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 114: https://www.7-11.com.tw/company/esg/images/report/2018_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 115: https://www.7-11.com.tw/company/esg/images/report/2018_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 116: https://www.7-11.com.tw/company/esg/images/report/2018_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 117: https://www.7-11.com.tw/company/esg/images/report/2018_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 118: https://www.7-11.com.tw/company/esg/images/report/2018_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 119: https://www.7-11.com.tw/company/esg/images/report/2018_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 120: https://www.7-11.com.tw/company/esg/images/report/2018_CH6_CH.pdf score=-9999 reason=排除條件
+  候選 121: https://www.7-11.com.tw/company/esg/images/report/2018_add_CH.pdf score=-9999 reason=排除條件
+  候選 122: https://www.7-11.com.tw/company/esg/images/report/2018_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 123: https://www.7-11.com.tw/company/esg/images/report/2018_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 124: https://www.7-11.com.tw/company/esg/images/report/2018_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 125: https://www.7-11.com.tw/company/esg/images/report/2018_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 126: https://www.7-11.com.tw/company/esg/images/report/2018_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 127: https://www.7-11.com.tw/company/esg/images/report/2018_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 128: https://www.7-11.com.tw/company/esg/images/report/2018_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 129: https://www.7-11.com.tw/company/esg/images/report/2018_CH6_EN.pdf score=-9999 reason=排除條件
+  候選 130: https://www.7-11.com.tw/company/esg/images/report/2018_add_EN.pdf score=-9999 reason=排除條件
+  候選 131: https://www.7-11.com.tw/company/esg/images/report/2018_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 132: https://www.7-11.com.tw/company/esg/images/report/2017_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 133: https://www.7-11.com.tw/company/esg/images/report/2017_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 134: https://www.7-11.com.tw/company/esg/images/report/2017_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 135: https://www.7-11.com.tw/company/esg/images/report/2017_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 136: https://www.7-11.com.tw/company/esg/images/report/2017_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 137: https://www.7-11.com.tw/company/esg/images/report/2017_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 138: https://www.7-11.com.tw/company/esg/images/report/2017_add_CH.pdf score=-9999 reason=排除條件
+  候選 139: https://www.7-11.com.tw/company/esg/images/report/2017_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 140: https://www.7-11.com.tw/company/esg/images/report/2017_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 141: https://www.7-11.com.tw/company/esg/images/report/2017_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 142: https://www.7-11.com.tw/company/esg/images/report/2017_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 143: https://www.7-11.com.tw/company/esg/images/report/2017_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 144: https://www.7-11.com.tw/company/esg/images/report/2017_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 145: https://www.7-11.com.tw/company/esg/images/report/2017_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 146: https://www.7-11.com.tw/company/esg/images/report/2017_add_EN.pdf score=-9999 reason=排除條件
+  候選 147: https://www.7-11.com.tw/company/esg/images/report/2017_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 148: https://www.7-11.com.tw/company/esg/images/report/2016_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 149: https://www.7-11.com.tw/company/esg/images/report/2016_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 150: https://www.7-11.com.tw/company/esg/images/report/2016_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 151: https://www.7-11.com.tw/company/esg/images/report/2016_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 152: https://www.7-11.com.tw/company/esg/images/report/2016_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 153: https://www.7-11.com.tw/company/esg/images/report/2016_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 154: https://www.7-11.com.tw/company/esg/images/report/2016_add_CH.pdf score=-9999 reason=排除條件
+  候選 155: https://www.7-11.com.tw/company/esg/images/report/2016_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 156: https://www.7-11.com.tw/company/esg/images/report/2016_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 157: https://www.7-11.com.tw/company/esg/images/report/2016_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 158: https://www.7-11.com.tw/company/esg/images/report/2016_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 159: https://www.7-11.com.tw/company/esg/images/report/2016_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 160: https://www.7-11.com.tw/company/esg/images/report/2016_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 161: https://www.7-11.com.tw/company/esg/images/report/2016_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 162: https://www.7-11.com.tw/company/esg/images/report/2016_add_EN.pdf score=-9999 reason=排除條件
+  候選 163: https://www.7-11.com.tw/company/esg/images/report/2016_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 164: https://www.7-11.com.tw/company/esg/images/report/2015_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 165: https://www.7-11.com.tw/company/esg/images/report/2015_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 166: https://www.7-11.com.tw/company/esg/images/report/2015_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 167: https://www.7-11.com.tw/company/esg/images/report/2015_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 168: https://www.7-11.com.tw/company/esg/images/report/2015_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 169: https://www.7-11.com.tw/company/esg/images/report/2015_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 170: https://www.7-11.com.tw/company/esg/images/report/2015_add_CH.pdf score=-9999 reason=排除條件
+  候選 171: https://www.7-11.com.tw/company/esg/images/report/2015_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 172: https://www.7-11.com.tw/company/esg/images/report/2015_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 173: https://www.7-11.com.tw/company/esg/images/report/2015_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 174: https://www.7-11.com.tw/company/esg/images/report/2015_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 175: https://www.7-11.com.tw/company/esg/images/report/2015_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 176: https://www.7-11.com.tw/company/esg/images/report/2015_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 177: https://www.7-11.com.tw/company/esg/images/report/2015_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 178: https://www.7-11.com.tw/company/esg/images/report/2015_add_EN.pdf score=-9999 reason=排除條件
+  候選 179: https://www.7-11.com.tw/company/esg/images/report/2015_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 180: https://www.7-11.com.tw/company/esg/images/report/2014_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 181: https://www.7-11.com.tw/company/esg/images/report/2014_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 182: https://www.7-11.com.tw/company/esg/images/report/2014_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 183: https://www.7-11.com.tw/company/esg/images/report/2014_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 184: https://www.7-11.com.tw/company/esg/images/report/2014_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 185: https://www.7-11.com.tw/company/esg/images/report/2014_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 186: https://www.7-11.com.tw/company/esg/images/report/2014_add_CH.pdf score=-9999 reason=排除條件
+  候選 187: https://www.7-11.com.tw/company/esg/images/report/2014_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 188: https://www.7-11.com.tw/company/esg/images/report/2014_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 189: https://www.7-11.com.tw/company/esg/images/report/2014_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 190: https://www.7-11.com.tw/company/esg/images/report/2014_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 191: https://www.7-11.com.tw/company/esg/images/report/2014_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 192: https://www.7-11.com.tw/company/esg/images/report/2014_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 193: https://www.7-11.com.tw/company/esg/images/report/2014_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 194: https://www.7-11.com.tw/company/esg/images/report/2014_add_EN.pdf score=-9999 reason=排除條件
+  候選 195: https://www.7-11.com.tw/company/esg/images/report/2014_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 196: https://www.7-11.com.tw/company/esg/images/report/2013_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 197: https://www.7-11.com.tw/company/esg/images/report/2013_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 198: https://www.7-11.com.tw/company/esg/images/report/2013_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 199: https://www.7-11.com.tw/company/esg/images/report/2013_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 200: https://www.7-11.com.tw/company/esg/images/report/2013_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 201: https://www.7-11.com.tw/company/esg/images/report/2013_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 202: https://www.7-11.com.tw/company/esg/images/report/2013_add_CH.pdf score=-9999 reason=排除條件
+  候選 203: https://www.7-11.com.tw/company/esg/images/report/2013_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 204: https://www.7-11.com.tw/company/esg/images/report/2013_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 205: https://www.7-11.com.tw/company/esg/images/report/2013_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 206: https://www.7-11.com.tw/company/esg/images/report/2013_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 207: https://www.7-11.com.tw/company/esg/images/report/2013_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 208: https://www.7-11.com.tw/company/esg/images/report/2013_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 209: https://www.7-11.com.tw/company/esg/images/report/2013_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 210: https://www.7-11.com.tw/company/esg/images/report/2013_add_EN.pdf score=-9999 reason=排除條件
+  候選 211: https://www.7-11.com.tw/company/esg/images/report/2013_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 212: https://www.7-11.com.tw/company/esg/images/report/2012_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 213: https://www.7-11.com.tw/company/esg/images/report/2012_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 214: https://www.7-11.com.tw/company/esg/images/report/2012_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 215: https://www.7-11.com.tw/company/esg/images/report/2012_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 216: https://www.7-11.com.tw/company/esg/images/report/2012_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 217: https://www.7-11.com.tw/company/esg/images/report/2012_CH5_CH.pdf score=-9999 reason=排除條件
+  候選 218: https://www.7-11.com.tw/company/esg/images/report/2012_add_CH.pdf score=-9999 reason=排除條件
+  候選 219: https://www.7-11.com.tw/company/esg/images/report/2012_report_all_CH.pdf score=-9999 reason=排除條件
+  候選 220: https://www.7-11.com.tw/company/esg/images/report/2012_CH0_EN.pdf score=-9999 reason=排除條件
+  候選 221: https://www.7-11.com.tw/company/esg/images/report/2012_CH1_EN.pdf score=-9999 reason=排除條件
+  候選 222: https://www.7-11.com.tw/company/esg/images/report/2012_CH2_EN.pdf score=-9999 reason=排除條件
+  候選 223: https://www.7-11.com.tw/company/esg/images/report/2012_CH3_EN.pdf score=-9999 reason=排除條件
+  候選 224: https://www.7-11.com.tw/company/esg/images/report/2012_CH4_EN.pdf score=-9999 reason=排除條件
+  候選 225: https://www.7-11.com.tw/company/esg/images/report/2012_CH5_EN.pdf score=-9999 reason=排除條件
+  候選 226: https://www.7-11.com.tw/company/esg/images/report/2012_add_EN.pdf score=-9999 reason=排除條件
+  候選 227: https://www.7-11.com.tw/company/esg/images/report/2012_report_all_EN.pdf score=-9999 reason=排除條件
+  候選 228: https://www.7-11.com.tw/company/esg/images/report/2009_CH0_CH.pdf score=-9999 reason=排除條件
+  候選 229: https://www.7-11.com.tw/company/esg/images/report/2009_CH1_CH.pdf score=-9999 reason=排除條件
+  候選 230: https://www.7-11.com.tw/company/esg/images/report/2009_CH2_CH.pdf score=-9999 reason=排除條件
+  候選 231: https://www.7-11.com.tw/company/esg/images/report/2009_CH3_CH.pdf score=-9999 reason=排除條件
+  候選 232: https://www.7-11.com.tw/company/esg/images/report/2009_CH4_CH.pdf score=-9999 reason=排除條件
+  候選 233: https://www.7-11.com.tw/company/esg/images/report/2009_add_CH.pdf score=-9999 reason=排除條件
+  候選 234: https://www.7-11.com.tw/company/esg/images/report/2009_report_all_CH.pdf score=-9999 reason=排除條件
+未選擇任何PDF下載
+下載完成，詳見 etl/download_log.json

@@ -1,0 +1,16 @@
+name: local-config
+version: 1.0.0
+schema: v1
+
+models:
+  - name: lmstudio
+    provider: openai
+    model: qwen2.5-7b-instruct
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+
+  - name: lmstudio-code
+    provider: openai
+    model: qwen2.5-coder-7b-instruct
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio

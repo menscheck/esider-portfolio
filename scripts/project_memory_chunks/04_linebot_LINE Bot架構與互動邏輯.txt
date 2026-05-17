@@ -1,0 +1,29 @@
+Title: LINE Bot架構與互動邏輯
+Category: linebot
+Tags: linebot, session, flex-message, quick-reply
+
+啟動：python run_bot.py（FastAPI on port 8000）
+外網：ngrok http 8000 → LINE Developer Console設Webhook URL
+
+互動流程：
+1. 加入帳號 → FollowEvent → 推送歡迎+身份選單（Flex Message）
+2. 選身份 → Postback → 設session + 推薦3個問題（Quick Reply）
+3. 問問題 → 查詢pipeline → 回答+延伸選單
+4. 延伸選單：
+   - 延伸問題（3題）：前2題鎖定公司，第3題廣泛型
+   - 同類型公司：同產業3家 → 選一家 → 延伸問題
+   - 換角色：其他3個角色 → 選一個 → 推薦問題
+
+廣泛型觸發：含「哪些/那些/哪幾/還有/都有/類似/相同」等關鍵字
+公司繼承：沒帶公司名時繼承session的last_company
+input_type：text=手動輸入，postback=點選按鈕
+
+session結構：
+{
+  persona: Persona,
+  last_query: str,
+  last_company: str,
+  last_answer: str,
+  asked_questions: set,
+  input_type: str
+}

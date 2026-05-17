@@ -16,8 +16,11 @@ from app.core.pipeline import query
 from app.core.persona_router import Persona
 from app.core.config import get_config
 from app.core.finmind_client import detect_market_intent, detect_financial_intent
+from app.core.intent_detector import detect_intent
 from app.core.company_resolver import resolve_companies_from_query
 import logging
+
+logger = logging.getLogger(__name__)
 
 from app.bot.suggestion_engine import (
     generate_followup_questions,
@@ -30,6 +33,7 @@ cfg = get_config()["line_bot"]
 configuration = Configuration(access_token=cfg["channel_access_token"])
 
 user_sessions: dict[str, dict] = {}
+_pending_before_session: dict[str, str] = {}
 
 PERSONA_OPTIONS = {
     "job_seeker": Persona.JOB_SEEKER,
@@ -211,65 +215,140 @@ def _do_query_and_reply(
         except Exception:
             pass  # typing indicator 失敗不影響主流程
 
-        # 預先偵測公司與台股意圖
+        # 預先偵測公司
         pre_detected = resolve_companies_from_query(question)
         has_company = bool(pre_detected) or bool(session.get("last_company"))
-        has_market_intent = detect_market_intent(question)
 
-        # 情況1：散戶/機構 + 無公司 + 無台股/財務關鍵字 + 上次也是 ESG 查詢 → 提示輸入公司
-        if (
-            persona in _FINMIND_PERSONAS
-            and not has_company
-            and not has_market_intent
-            and not detect_financial_intent(question)
-            and session.get("last_query_type", "esg") == "esg"
-        ):
-            persona_name_local = PERSONA_NAMES[persona]
-            questions = generate_persona_questions(persona_name_local)
-            options = [
-                {"label": q[:20], "data": f"ask={q}", "display": q}
-                for q in questions[:3]
-            ]
-            msg = _text_with_qr(
-                "請問你想查詢哪家公司？\n直接輸入公司名稱，或從以下問題開始 👇",
-                options,
-            )
+        # LLM 意圖分類
+        intent = detect_intent(question)
+        logger.warning(f"[intent] question={question!r} → intent={intent}, last_query_type={session.get('last_query_type')}")
+
+        # 模糊意圖 → 一律顯示澄清選單，依 persona 排序
+        if intent == "ambiguous":
+            user_sessions[user_id]["pending_question"] = question
+            if persona == Persona.JOB_SEEKER:
+                options = [
+                    {"label": "💰 薪資/待遇",     "data": "clarify=esg",   "display": "我問的是薪資待遇"},
+                    {"label": "🌱 ESG/職場環境",  "data": "clarify=esg",   "display": "我問的是ESG職場環境"},
+                    {"label": "📈 台股/財務",    "data": "clarify=stock", "display": "我問的是台股財務"},
+                ]
+                clarify_text = "請問您想了解哪方面？ 🤔"
+            elif persona == Persona.INSTITUTIONAL_INVESTOR:
+                options = [
+                    {"label": "🌱 永續/ESG方面",  "data": "clarify=esg_detail", "display": "我問的是永續相關"},
+                    {"label": "📈 台股/財務方面", "data": "clarify=stock",      "display": "我問的是台股財務"},
+                ]
+                clarify_text = "請問您想了解哪方面？ 🤔"
+            elif persona == Persona.ESG_PRACTITIONER:
+                options = [
+                    {"label": "🌱 永續/ESG方面",  "data": "clarify=esg_detail", "display": "我問的是永續相關"},
+                    {"label": "📈 台股/財務方面", "data": "clarify=stock",      "display": "我問的是台股財務"},
+                ]
+                clarify_text = "請問您想了解哪方面？ 🤔"
+            else:  # 散戶投資人
+                options = [
+                    {"label": "📈 台股/財務方面", "data": "clarify=stock",      "display": "我問的是台股財務"},
+                    {"label": "🌱 永續/ESG方面",  "data": "clarify=esg_detail", "display": "我問的是永續相關"},
+                ]
+                clarify_text = "請問您想了解哪方面？ 🤔"
+            msg = _text_with_qr(clarify_text, options)
             _reply(api_client, reply_token, [msg])
             return
 
-        # 非投資人 + 有台股/財務意圖 → 儲存 pending_question 再提示切換身分
-        if (
-            persona not in _FINMIND_PERSONAS
-            and (detect_market_intent(question) or bool(detect_financial_intent(question)))
-        ):
+        # 超出範圍
+        if intent == "oos":
+            oos_text = "我是 eSider ESG 永續洞察助理，專注於台灣上市櫃公司 ESG 永續資訊與台股財務數據。\n這個問題超出我的服務範圍，請換個問題試試 😊"
+            oos_session = user_sessions.get(user_id, {})
+            oos_persona = oos_session.get("persona") if oos_session else None
+            last_company = oos_session.get("last_company") if oos_session else None
+
+            if not oos_persona:
+                options = [
+                    {"label": "👔 機構投資人", "data": "persona=institutional", "display": "我是機構投資人"},
+                    {"label": "📈 散戶投資人", "data": "persona=retail",        "display": "我是散戶投資人"},
+                    {"label": "💼 求職者",     "data": "persona=job_seeker",    "display": "我是求職者"},
+                    {"label": "🌱 ESG從業者",  "data": "persona=esg_pro",       "display": "我是ESG從業者"},
+                ]
+                msg = _text_with_qr(oos_text + "\n\n請先選擇您的身份：", options)
+            else:
+                oos_persona_name = PERSONA_NAMES[oos_persona]
+                last_query_type = oos_session.get("last_query_type", "esg")
+                if last_company:
+                    questions = generate_followup_questions(
+                        last_company, "", oos_persona_name,
+                        query_type=last_query_type,
+                    )
+                else:
+                    questions = generate_persona_questions(oos_persona_name)
+                options = [
+                    {"label": q[:20], "data": f"ask={q}", "display": q}
+                    for q in questions[:3]
+                ]
+                options.append({"label": "👤 換角色", "data": f"menu=persona&uid={user_id}", "display": "換角色"})
+                msg = _text_with_qr(oos_text, options)
+            _reply(api_client, reply_token, [msg])
+            return
+
+        # 非投資人問台股 → 提示切換身分
+        logger.warning(f"[攔截檢查] intent={intent}, persona={persona}, in_finmind={persona in _FINMIND_PERSONAS}")
+        if intent == "finmind" and persona not in _FINMIND_PERSONAS:
             user_sessions[user_id]["pending_question"] = question
             options = [
                 {"label": "👔 機構投資人", "data": "persona=institutional", "display": "切換為機構投資人"},
-                {"label": "📈 散戶投資人", "data": "persona=retail", "display": "切換為散戶投資人"},
+                {"label": "📈 散戶投資人", "data": "persona=retail",        "display": "切換為散戶投資人"},
             ]
-            msg = _text_with_qr(
-                "台股相關問題請選擇投資人身份，選完後將自動回答你的問題 👇",
-                options,
-            )
+            msg = _text_with_qr("台股相關問題請選擇投資人身份，選完後將自動回答 👇", options)
             _reply(api_client, reply_token, [msg])
             return
 
-        # 計算本次查詢意圖類型；若非財務/台股，延續上次 session 的類型
-        current_query_type = (
-            "finmind"
-            if (has_market_intent or bool(detect_financial_intent(question)))
-            else session.get("last_query_type", "esg")
-        )
+        # 投資人 + esg 意圖 + 無公司 → 提示輸入公司
+        if (
+            intent == "esg"
+            and persona in _FINMIND_PERSONAS
+            and not has_company
+            and session.get("last_query_type", "esg") == "esg"
+        ):
+            questions = generate_persona_questions(PERSONA_NAMES[persona])
+            options = [{"label": q[:20], "data": f"ask={q}", "display": q} for q in questions[:3]]
+            msg = _text_with_qr("請問你想查詢哪家公司？\n直接輸入公司名稱，或從以下問題開始 👇", options)
+            _reply(api_client, reply_token, [msg])
+            return
 
-        # 先讓 pipeline 從 query 自動偵測公司
-        result = query(user_query=question, persona=persona, company=None)
-        detected_company = result.get("company")
+        current_query_type = intent if intent != "ambiguous" else session.get("last_query_type", "esg")
 
-        # 偵測不到才繼承 last_company
-        if not detected_company:
+        # finmind 意圖 + 無公司，先看 session 有沒有 last_company
+        if current_query_type == "finmind" and not pre_detected:
             last_company = session.get("last_company")
             if last_company:
-                result = query(user_query=question, persona=persona, company=last_company)
+                # ① 有 last_company（如全家）→ 直接繼承查個股
+                result = query(user_query=question, persona=persona, company=last_company, intent=current_query_type)
+                logger.info(f"[line_handler] finmind+無公司，繼承 last_company={last_company}")
+            else:
+                # ② 無 last_company（剛開始）→ 主動詢問公司名，不送進 pipeline
+                persona_name_local = PERSONA_NAMES[persona]
+                hint_questions = generate_persona_questions(persona_name_local)
+                options = [
+                    {"label": q[:20], "data": f"ask={q}", "display": q}
+                    for q in hint_questions[:3]
+                ]
+                # 把原問題存起來，選完公司後可繼續（選擇公司的流程在 company_select 裡處理）
+                user_sessions[user_id]["pending_question"] = question
+                msg = _text_with_qr(
+                    "請問您想查哪支股票？\n直接輸入股票名稱或代碼，或從以下推薦問題開始 👇",
+                    options,
+                )
+                _reply(api_client, reply_token, [msg])
+                return
+        else:
+            # 先讓 pipeline 從 query 自動偵測公司
+            result = query(user_query=question, persona=persona, company=None, intent=current_query_type)
+            detected_company = result.get("company")
+
+            # 偵測不到才繼承 last_company
+            if not detected_company:
+                last_company = session.get("last_company")
+                if last_company:
+                    result = query(user_query=question, persona=persona, company=last_company, intent=current_query_type)
 
         answer = result["answer"]
         company = result.get("company")
@@ -278,7 +357,14 @@ def _do_query_and_reply(
         # 只有當問題中明確偵測到公司時才更新 last_company；
         # 若問題沒有公司，繼承 session 的 last_company，避免 ESG chunks 的別家公司覆蓋
         new_company = company if bool(pre_detected) else None
-        primary_company = new_company or session.get("last_company") or (chunks[0].get("company") if chunks else None)
+        # finmind 無公司時不從 ESG chunks 取公司
+        if current_query_type == "finmind" and not new_company and not session.get("last_company"):
+            primary_company = None
+        else:
+            # chunks fallback 只在「問題有偵測到公司」且「session 還沒有 last_company」時才用
+            # 不允許 chunks 覆蓋已經存在的 last_company
+            fallback_from_chunks = (chunks[0].get("company") if chunks else None) if not session.get("last_company") and not new_company else None
+            primary_company = new_company or session.get("last_company") or fallback_from_chunks
 
         # 用獨立 prompt 抽取與問題直接相關的卡片
         cards = extract_key_points(answer, question, persona_name)
@@ -358,24 +444,18 @@ def handle_message(event: MessageEvent, api_client: ApiClient):
         ])
         return
 
-    # 尚未選擇 persona
+    # 尚未選擇 persona → 儲存 pending，顯示選身分選單
     if user_id not in user_sessions:
-        if detect_market_intent(text) or bool(detect_financial_intent(text)):
-            user_sessions[user_id] = {
-                "persona": Persona.RETAIL_INVESTOR,
-                "last_query": None,
-                "last_company": None,
-                "last_answer": None,
-                "card_details": [],
-                "asked_questions": set(),
-                "last_query_type": "finmind",
-                "pending_question": None,
-            }
-        else:
-            _reply(api_client, event.reply_token, [
-                TextMessage(text="請先輸入「開始」選擇您的身份 🙏")
-            ])
-            return
+        _pending_before_session[user_id] = text
+        options = [
+            {"label": "👔 機構投資人", "data": "persona=institutional", "display": "我是機構投資人"},
+            {"label": "📈 散戶投資人", "data": "persona=retail",        "display": "我是散戶投資人"},
+            {"label": "💼 求職者",     "data": "persona=job_seeker",    "display": "我是求職者"},
+            {"label": "🌱 ESG從業者",  "data": "persona=esg_pro",       "display": "我是ESG從業者"},
+        ]
+        msg = _text_with_qr("詢問前請先選擇身份，我會依照您的身份提供最適合的資訊 👇", options)
+        _reply(api_client, event.reply_token, [msg])
+        return
 
     # 一般查詢
     _do_query_and_reply(api_client, event.reply_token, user_id, text)
@@ -392,15 +472,17 @@ def handle_postback(event: PostbackEvent, api_client: ApiClient):
         if not persona:
             return
 
-        pending = user_sessions.get(user_id, {}).get("pending_question")
+        old_session = user_sessions.get(user_id, {})
+        pending = old_session.get("pending_question") or _pending_before_session.pop(user_id, None)
         user_sessions[user_id] = {
             "persona": persona,
             "last_query": None,
-            "last_company": None,
+            "last_company": old_session.get("last_company"),
             "last_answer": None,
             "card_details": [],
             "asked_questions": set(),
-            "pending_question": None,
+            "last_query_type": old_session.get("last_query_type"),  # 繼承舊身份的 query_type
+            "pending_question": old_session.get("pending_question"),
         }
 
         persona_name = PERSONA_NAMES[persona]
@@ -421,15 +503,31 @@ def handle_postback(event: PostbackEvent, api_client: ApiClient):
             options,
         )
         if pending:
+            pending_intent = detect_intent(pending)
             user_sessions[user_id]["last_query_type"] = (
-                "finmind"
-                if (detect_market_intent(pending) or bool(detect_financial_intent(pending)))
-                else "esg"
+                "finmind" if pending_intent == "finmind" else "esg"
             )
-            user_sessions[user_id]["last_company"] = None
+            # 不清除 last_company：換角色帶著 pending finmind 問題（如「今天有漲嗎？」）
+            # 應繼承前一身份的 last_company，讓 _do_query_and_reply 的繼承邏輯接手
+            # user_sessions[user_id]["last_company"] = None  # ← 已移除，這行會讓全家等上下文消失
             user_sessions[user_id]["pending_question"] = None
             _do_query_and_reply(api_client, event.reply_token, user_id, pending)
             return
+
+        # 無 pending → 若有繼承 last_company 則顯示延伸問題，否則顯示歡迎訊息
+        inherited_company = user_sessions[user_id].get("last_company")
+        if inherited_company:
+            last_query_type = user_sessions[user_id].get("last_query_type", "esg")
+            questions = generate_followup_questions(
+                inherited_company, "", persona_name,
+                query_type=last_query_type,
+            )
+            options = [
+                {"label": q[:20], "data": f"ask={q}", "display": q}
+                for q in questions[:3]
+            ]
+            welcome_text = f"✅ 身份：{icon} {persona_name}\n\n關於「{inherited_company}」，您可能想問："
+            msg = _text_with_qr(welcome_text, options)
         _reply(api_client, event.reply_token, [msg])
         return
 
@@ -458,21 +556,16 @@ def handle_postback(event: PostbackEvent, api_client: ApiClient):
             pass  # typing indicator 失敗不影響主流程
 
         try:
-            result = query(user_query=question, persona=persona, company=None)
+            broad_intent = detect_intent(question)
+            broad_query_type = "finmind" if broad_intent == "finmind" else "esg"
+            result = query(user_query=question, persona=persona, company=None, intent=broad_query_type)
             answer = result["answer"]
             chunks = result.get("chunks", [])
 
             asked = session.get("asked_questions", set())
             asked.add(question)
             user_sessions[user_id]["asked_questions"] = asked
-
-            # 讓 ask_broad 延伸也能跟隨原意圖（台股/財務 或 ESG）
-            user_sessions[user_id].update({
-                **user_sessions[user_id],
-                "last_query_type": "finmind"
-                if detect_financial_intent(question)
-                else "esg",
-            })
+            user_sessions[user_id]["last_query_type"] = broad_query_type
 
             mentioned = []
             seen = set()
@@ -499,6 +592,107 @@ def handle_postback(event: PostbackEvent, api_client: ApiClient):
                 TextMessage(text=f"查詢錯誤：{str(e)}")
             ])
         return
+
+    # ── 模糊意圖澄清 ──────────────────────────────
+    if data.startswith("clarify="):
+        clarify_type = data.split("=")[1]
+        pending = user_sessions.get(user_id, {}).get("pending_question", "")
+        persona = user_sessions[user_id]["persona"]
+
+        persona_name = PERSONA_NAMES[persona]
+        last_company = user_sessions[user_id].get("last_company")
+        company_hint = last_company or "公司名稱"
+
+        # ── 引導範例 per persona ──────────────────
+        STOCK_EXAMPLES = {
+            "散戶投資人": [
+                f"{company_hint}今天收盤價？",
+                f"{company_hint}最近法人動向？",
+                f"{company_hint}今年EPS多少？",
+            ],
+            "機構投資人": [
+                f"{company_hint}今年ROE變化？",
+                f"{company_hint}自由現金流趨勢？",
+                f"{company_hint}本益比估值如何？",
+            ],
+            "求職者": [
+                f"{company_hint}股價走勢如何？",
+                f"{company_hint}今年營收表現？",
+                f"{company_hint}配息穩定嗎？",
+            ],
+            "ESG從業者": [
+                f"{company_hint}今年股價趨勢？",
+                f"{company_hint}最近法人買賣超？",
+                f"{company_hint}今年EPS？",
+            ],
+        }
+        ESG_EXAMPLES = {
+            "求職者": [
+                f"{company_hint}今年有加薪嗎？",
+                f"{company_hint}年終發幾個月？",
+                f"{company_hint}員工離職率高嗎？",
+            ],
+            "機構投資人": [
+                f"{company_hint}今年碳排有減少嗎？",
+                f"{company_hint}氣候轉型風險如何？",
+                f"{company_hint}ESG評等有提升嗎？",
+            ],
+            "散戶投資人": [
+                f"{company_hint}碳費對獲利影響？",
+                f"{company_hint}ESG風險對股價影響？",
+                f"{company_hint}永續表現如何？",
+            ],
+            "ESG從業者": [
+                f"{company_hint}今年碳排計畫進度？",
+                f"{company_hint}GRI揭露有改善嗎？",
+                f"{company_hint}雙重重大性評估方法？",
+            ],
+        }
+
+        if clarify_type == "stock":
+            user_sessions[user_id]["pending_question"] = None
+            if persona not in _FINMIND_PERSONAS:
+                options = [
+                    {"label": "👔 機構投資人", "data": "persona=institutional", "display": "切換為機構投資人"},
+                    {"label": "📈 散戶投資人", "data": "persona=retail",        "display": "切換為散戶投資人"},
+                ]
+                msg = _text_with_qr("台股財務問題需要投資人身份，請先切換 👇", options)
+            else:
+                ex = STOCK_EXAMPLES.get(persona_name, [f"{company_hint}今天股價？"])
+                msg = _text_with_qr(
+                    f"📈 請直接輸入您想查詢的台股問題 👇\n"
+                    f"範例：「{ex[0]}」「{ex[1]}」",
+                    [{"label": q[:20], "data": f"ask={q}", "display": q} for q in ex],
+                )
+            _reply(api_client, event.reply_token, [msg])
+            return
+
+        elif clarify_type == "esg":
+            user_sessions[user_id]["pending_question"] = None
+            ex = ESG_EXAMPLES.get(persona_name, [f"{company_hint}的ESG表現如何？"])
+            msg = _text_with_qr(
+                f"🌱 請直接輸入您想查詢的問題 👇\n"
+                f"範例：「{ex[0]}」「{ex[1]}」",
+                [{"label": q[:20], "data": f"ask={q}", "display": q} for q in ex],
+            )
+            _reply(api_client, event.reply_token, [msg])
+            return
+
+        elif clarify_type == "esg_detail":
+            user_sessions[user_id]["pending_question"] = None
+            esg_detail_examples = [
+                f"{company_hint}今年碳排有下降嗎？",
+                f"{company_hint}節能目標達成了嗎？",
+                f"{company_hint}員工離職率趨勢？",
+                f"{company_hint}ESG評等幾分？",
+            ]
+            msg = _text_with_qr(
+                f"🌱 請直接輸入您想查詢的永續/ESG問題 👇\n"
+                f"範例：「{esg_detail_examples[0]}」「{esg_detail_examples[1]}」",
+                [{"label": q[:20], "data": f"ask={q}", "display": q} for q in esg_detail_examples],
+            )
+            _reply(api_client, event.reply_token, [msg])
+            return
 
     # ── 直接問問題（推薦/延伸選單觸發）──────────────
     if data.startswith("ask="):
@@ -536,6 +730,9 @@ def handle_postback(event: PostbackEvent, api_client: ApiClient):
             detail_text = card_details[card_idx]
         else:
             detail_text = "抱歉，找不到詳細資料，請重新查詢。"
+
+        from app.core.text_postprocess import fix_source_annotation
+        detail_text = fix_source_annotation(detail_text)
 
         msg = _text_with_qr(detail_text, _main_menu_options(user_id))
         _reply(api_client, event.reply_token, [msg])

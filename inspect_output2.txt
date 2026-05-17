@@ -1,0 +1,20 @@
+HTML saved to page_source.html
+
+Found 1 elements matching: '[class*="select"]'
+  [0] <div class="lang-item selected"><img class="" alt="" src="/assets/images/header/lang-icon.svg"><img class="lang-toggle" alt="" src="/assets/images/header/header-more-icon.svg"></div>
+
+Found 8 elements matching: '[class*="dropdown"]'
+  [0] <div class="_dropdown-content-box_1tpm0_9   "><input class="display-input " type="text" placeholder="市場別*" value=""><div class="dropdown-icon"></div></div>
+  [1] <div class="dropdown-icon"></div>
+  [2] <div class="_dropdown-content-box_1tpm0_9   "><input class="display-input " type="text" placeholder="報告年度*" value=""><div class="dropdown-icon"></div></div>
+  [3] <div class="dropdown-icon"></div>
+  [4] <div class="_dropdown-content-box_1tpm0_9   "><input class="display-input " type="text" placeholder="產業別" value=""><div class="placeholder-item">產業別</div><div class="dropdown-icon"></div></div>
+
+Total <input> elements: 4
+  type='text' name='' id='' placeholder='市場別*'
+  type='text' name='' id='' placeholder='報告年度*'
+  type='text' name='' id='' placeholder='產業別'
+  type='text' name='' id='' placeholder='公司代號'
+
+Total <button> elements: 1
+  '查詢'

@@ -1,0 +1,31 @@
+Title: 資料結構與統計
+Category: data
+Tags: data, mongodb, faiss, companies
+
+MongoDB schema（esg_db.chunks）：
+{
+  company: str,      # 公司名稱（如「台積電」）
+  source: str,       # PDF檔名
+  page: int,         # 頁碼
+  chunk_id: str,     # {公司}_p{頁}_c{idx}
+  text: str,         # 500字，50字重疊
+  embedding: list    # 1024維 bge-m3向量
+}
+
+現有資料（2024-05）：
+- 公司數：30家（上市）
+- 總chunk數：16,406
+- FAISS向量數：16,406
+- 向量維度：1024
+
+fetch_k設定：
+- 有指定公司：top_k * 50（避免撈不到）
+- 無指定公司：top_k
+
+公司清單：
+中國信託銀行、中華電信、中鋼公司、亞洲水泥、佳世達集團、
+南山產物、台北富邦銀行、台塑、台新金控、台灣中油、
+台積電、台達電、合作金庫銀行、國泰金控、宏遠興業、
+崇越科技、廣達、彰化銀行、日月光投控、榮成紙業、
+欣興電子、永豐銀行、玉山金控、第一銀行、統一超商、
+聯電、遠東新世紀、長榮航空、開發金控、鴻海精密

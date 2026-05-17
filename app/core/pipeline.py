@@ -18,6 +18,8 @@ from app.core.company_resolver import resolve_company, resolve_companies_from_qu
 from app.core.retriever import ESGRetriever
 from app.core.reranker import rerank
 from app.core.persona_router import Persona, route
+from app.core.text_postprocess import fix_source_annotation
+from app.core.intent_detector import detect_intent
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +103,7 @@ def query(
     persona: Persona,
     company: str | None = None,
     top_k: int = 5,
+    intent: str | None = None,
 ) -> dict:
     """
     完整查詢流程
@@ -147,63 +150,95 @@ def query(
 
     logger.warning(f"DEBUG pipeline: persona={persona.value}, company={resolved_company}")
 
-    # ── Step 3: ESG FAISS 檢索（四個角色都執行）────────────────────────────────
-    chunks = retriever.search(user_query, company=resolved_company, top_k=top_k * 3)
-    logger.info(f"retrieved {len(chunks)} candidate chunks for company={resolved_company}")
+    # ── 先判斷 query_intent，後續 Step 3/4 都需要 ────────────────────────────
+    query_intent = intent if intent else detect_intent(user_query)
+    if intent == "esg":
+        detected_intent = detect_intent(user_query)
+        if detected_intent == "finmind":
+            query_intent = "finmind"
+            logger.warning(f"[intent] 外部傳入 esg 但問題偵測為 finmind，以 finmind 為準")
+    if query_intent == "ambiguous":
+        query_intent = intent if intent and intent != "ambiguous" else "esg"
+    logger.warning(f"[intent] 最終 query_intent={query_intent}")
 
-    if chunks:
-        chunks = rerank(user_query, chunks, top_k=top_k)
-        logger.info(f"reranked to {len(chunks)} chunks")
+    if query_intent == "oos":
+        return {
+            "answer": "我是 eSider ESG 永續洞察助理，這個問題超出我的服務範圍。",
+            "chunks": [],
+            "tags": [],
+            "persona": persona.value,
+            "company": None,
+        }
 
-    # 鎖定公司沒資料 → fallback 全域搜尋
-    if not chunks:
-        chunks = retriever.search(user_query, company=None, top_k=top_k * 3)
+    # ── Step 3: ESG 檢索 ────────────────────────────────────────────────────────
+    # finmind + 無公司 = 純大盤查詢，不需要 ESG chunks
+    skip_esg = (query_intent == "finmind" and not resolved_company and persona in _FINMIND_PERSONAS)
+
+    if skip_esg:
+        chunks = []
+        logger.warning(f"[pipeline] finmind+無公司，跳過 ESG 檢索")
+    else:
+        chunks = retriever.search(user_query, company=resolved_company, top_k=top_k * 3)
+        logger.info(f"retrieved {len(chunks)} candidate chunks for company={resolved_company}")
+
         if chunks:
             chunks = rerank(user_query, chunks, top_k=top_k)
-        logger.info(f"fallback global retrieval: {len(chunks)} chunks")
+            logger.info(f"reranked to {len(chunks)} chunks")
+
+        # 鎖定公司沒資料 → fallback 全域搜尋
+        if not chunks:
+            chunks = retriever.search(user_query, company=None, top_k=top_k * 3)
+            if chunks:
+                chunks = rerank(user_query, chunks, top_k=top_k)
+            logger.info(f"fallback global retrieval: {len(chunks)} chunks")
 
     # ── Step 4: FinMind 財務補充（僅散戶/機構）───────────────────────────────
-    # 注意：FinMind 是「補充」ESG，不是取代，兩者都要送給 LLM
     financial_context = ""
 
     if persona in _FINMIND_PERSONAS:
+        logger.warning(f"[FinMind] Step4 開始, persona={persona.value}, intent={query_intent}, company={resolved_company}")
         try:
-            get_financial_summary, detect_financial_intent, get_market_index_summary, detect_market_intent = _get_finmind_functions()
+            get_financial_summary, _, get_market_index_summary, detect_market_intent = _get_finmind_functions()
             from app.core.company_resolver import get_company_info
 
-            # (A) 大盤/市場總覽（有無公司都可觸發）
-            if detect_market_intent(user_query):
-                market_ctx = get_market_index_summary(user_query)
-                if market_ctx:
-                    financial_context = market_ctx
-                    logger.info("[FinMind] 大盤摘要已取得")
+            if query_intent == "finmind":
+                logger.warning(f"[FinMind] intent=finmind 確認")
 
-            # (B) 個股財務數據（需要有公司）
-            if resolved_company:
-                info = get_company_info(resolved_company)
-                stock_id = info.get("stock_id") if info else None
+                # (A) 大盤/市場總覽（無公司 → force 查最新指數）
+                if not resolved_company:
+                    logger.warning(f"[FinMind] 無公司，查大盤")
+                    market_ctx = get_market_index_summary(user_query, force=True)
+                    logger.warning(f"[FinMind] get_market_index_summary 回傳長度={len(market_ctx) if market_ctx else 0}")
+                    if market_ctx:
+                        financial_context = market_ctx
 
-                if stock_id:
-                    augmented_query = user_query
-                    if persona == Persona.INSTITUTIONAL_INVESTOR:
-                        augmented_query = user_query + " " + " ".join(_INSTITUTIONAL_EXTRA_KEYWORDS)
+                # (B) 個股財務數據（有公司）
+                else:
+                    info = get_company_info(resolved_company)
+                    stock_id = info.get("stock_id") if info else None
+                    logger.warning(f"[FinMind] 查個股 company={resolved_company}, stock_id={stock_id}")
 
-                    if detect_financial_intent(augmented_query):
+                    if stock_id:
+                        augmented_query = user_query
+                        if persona == Persona.INSTITUTIONAL_INVESTOR:
+                            augmented_query = user_query + " " + " ".join(_INSTITUTIONAL_EXTRA_KEYWORDS)
+
                         fin_ctx = get_financial_summary(stock_id, augmented_query)
+                        logger.warning(f"[FinMind] get_financial_summary 回傳長度={len(fin_ctx) if fin_ctx else 0}")
                         if fin_ctx:
-                            # 兩段都有則合併
                             financial_context = (
                                 fin_ctx if not financial_context
                                 else financial_context + "\n\n" + fin_ctx
                             )
-                            logger.info("[FinMind] %s(%s) 個股財務已取得 (persona=%s)",
-                                        resolved_company, stock_id, persona.value)
+            else:
+                logger.warning(f"[FinMind] intent={query_intent}，跳過FinMind查詢")
 
         except Exception:
             logger.exception("[FinMind] 取得財務數據失敗，忽略並繼續流程")
 
     # ── Step 5: 組 prompt 並呼叫 LLM ──────────────────────────────────────────
-    prompts = route(user_query, persona, chunks, matched_tags, financial_context)
+    prompts = route(user_query, persona, chunks, matched_tags, financial_context,
+                    intent=query_intent if persona in _FINMIND_PERSONAS else "esg")
 
     az = _get_azure_config()
     client = AzureOpenAI(
@@ -221,7 +256,7 @@ def query(
         temperature=0.3,
     )
 
-    answer = response.choices[0].message.content.strip()
+    answer = fix_source_annotation(response.choices[0].message.content)
 
     return {
         "answer": answer,

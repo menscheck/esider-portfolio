@@ -1,0 +1,36 @@
+ESG數位平台
+查詢條件
+產業別
+公司代號
+查詢
+查詢結果
+(1)
+全部縮合
+列印網頁
+開新視窗
+問題回報
+另存CSV
+2330-台積電
+公司代號	公司名稱	英文簡稱	產業類別	報告書內容涵蓋期間	編製依循準則
+2330	台灣積體電路製造股份有限公司	TSMC	半導體業	2024/01/01~2024/12/31	GRI準則、氣候相關財務揭露建議書（TCFD Recommendations）、自然相關財務揭露建議書（TNFD Recommendations）、永續會計準則理事會（Sustainability Accounting Standards Board, SASB）準則─半導體產業指標、AA1000當責性原則標準、AA1000利害關係人議合標準、國際整合性報導架構、CDP 氣候變遷與水安全、聯合國全球盟約、聯合國永續發展目標、WEF IBC利害關係人資本主義衡量指標、歐盟永續報導標準－雙重重大性
+第三方保證	取得確信/保證原因	會計師確信
+驗證單位	採用標準	驗證單位	採用標準	意見類型
+立恩威國際驗證股份有限公司（DNV Business Assurance Co. Ltd., DNV）	立恩威國際驗證股份有限公司（DNV）依據DNV VeriSustainTM Protocol、GRI 準則、SASB準則、TCFD框架查證本報告。DNV VeriSustainTM Protocol遵循ISO 17029:2019符合性評鑑－確證與查證機構之一般性原則與要求（Conformity Assessment－ General Principles and Requirements for Validation and Verification Bodies），符合公認的永續保證標準與做法，例如ISAE3000、AA1000AS及ISO14016: 2020 環境管理－環境報告確證指引（Environment Management - Guidelines on the Assurance of Environmental Reports）	屬自願確信/保證者			
+中文版報告書：
+永續報告書網址	永續報告書檔案	上傳日期	修正後報告書	修正後報告書上傳日期
+
+公司網站
+	
+下載 PDF
+	2025-08-28		
+英文版報告書：
+永續報告書網址	永續報告書檔案	上傳日期	修正後報告書	修正後報告書上傳日期
+
+公司網站
+	
+下載 PDF
+	2025-08-28		
+報告書聯絡資訊	備註
+
+ESG@TSMC.COM
+	

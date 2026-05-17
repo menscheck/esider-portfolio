@@ -1,0 +1,24 @@
+Title: 系統架構總覽
+Category: architecture
+Tags: architecture, tech-stack, modules
+
+專案名稱：eSider ESG洞察平台
+路徑：C:\Users\Sam Joseph\esg-agent
+
+技術棧：
+- Embedding: BAAI/bge-m3（本地，RTX 3060，CUDA 12.4）
+- 向量DB: FAISS（data/faiss_index/esg.index + id_map.json）
+- 文件DB: MongoDB（localhost:27017，esg_db.chunks）
+- LLM: Azure OpenAI gpt-4.1-mini（config.ini）
+- Bot: LINE Bot + FastAPI + ngrok
+- 下載: Playwright
+
+核心模組：
+- app/core/retriever.py: FAISS語意搜尋
+- app/core/pipeline.py: 完整查詢流程
+- app/core/persona_router.py: 4個Persona的system prompt
+- app/core/tag_parser.py: 40個ESG tag的jieba比對
+- app/core/company_resolver.py: 公司名稱模糊比對（rapidfuzz）
+- app/bot/line_handler.py: LINE Bot訊息處理
+- app/bot/suggestion_engine.py: LLM動態生成延伸問題
+- app/bot/webhook.py: FastAPI webhook

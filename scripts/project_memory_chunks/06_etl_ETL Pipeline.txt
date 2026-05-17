@@ -1,0 +1,20 @@
+Title: ETL Pipeline
+Category: etl
+Tags: etl, pipeline, embedding, faiss
+
+流程：PDF → Parse → Chunk → Embed → MongoDB + FAISS
+
+關鍵腳本：
+- app/etl/run_pipeline.py：完整ETL自動化
+- build_faiss_index.py：從MongoDB重建FAISS index
+
+Chunking：500字，50字重疊，PyMuPDF (fitz)
+Embedding：bge-m3，batch_size=64，normalize=True，CUDA
+MongoDB：upsert防重複（chunk_id為key）
+FAISS：IndexFlatL2，存 data/faiss_index/esg.index + id_map.json
+
+擴充公司時步驟：
+1. 下載PDF到 data/reports/{公司名}/
+2. 執行 run_pipeline.py
+3. 執行 build_faiss_index.py 重建index
+4. 更新 company_resolver.py 的 COMPANY_MASTER

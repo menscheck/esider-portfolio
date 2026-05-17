@@ -66,6 +66,16 @@ FINANCIAL_KEYWORDS: dict[str, str] = {
 
     # 股價/技術面
     "股價": "TaiwanStockPrice",
+    "收盤價": "TaiwanStockPrice",
+    "收盤": "TaiwanStockPrice",
+    "開盤價": "TaiwanStockPrice",
+    "開盤": "TaiwanStockPrice",
+    "最高價": "TaiwanStockPrice",
+    "最低價": "TaiwanStockPrice",
+    "現在股價": "TaiwanStockPrice",
+    "目前股價": "TaiwanStockPrice",
+    "今天股價": "TaiwanStockPrice",
+    "昨天股價": "TaiwanStockPrice",
     "漲跌": "TaiwanStockPrice",
     "成交量": "TaiwanStockPrice",
     "成交": "TaiwanStockPrice",
@@ -104,10 +114,50 @@ FINANCIAL_KEYWORDS: dict[str, str] = {
     "毛利率": "TaiwanStockFinancialStatements",
     "淨利率": "TaiwanStockFinancialStatements",
     "營業利益": "TaiwanStockFinancialStatements",
-    "自由現金流": "TaiwanStockBalanceSheet",
-    "FCF": "TaiwanStockBalanceSheet",
-    "資本支出": "TaiwanStockBalanceSheet",
-    "CAPEX": "TaiwanStockBalanceSheet",
+
+    # 現金流量
+    "自由現金流": "TaiwanStockCashFlowsStatement",
+    "現金流": "TaiwanStockCashFlowsStatement",
+    "FCF": "TaiwanStockCashFlowsStatement",
+    "資本支出": "TaiwanStockCashFlowsStatement",
+    "CAPEX": "TaiwanStockCashFlowsStatement",
+    "營業活動": "TaiwanStockCashFlowsStatement",
+    "投資活動": "TaiwanStockCashFlowsStatement",
+
+    # 融資融券
+    "融券": "TaiwanStockMarginPurchaseSell",
+    "融資": "TaiwanStockMarginPurchaseSell",
+    "借券": "TaiwanStockMarginPurchaseSell",
+    "融券張數": "TaiwanStockMarginPurchaseSell",
+    "融資張數": "TaiwanStockMarginPurchaseSell",
+    "融券餘額": "TaiwanStockMarginPurchaseSell",
+    "融資餘額": "TaiwanStockMarginPurchaseSell",
+    "空單": "TaiwanStockMarginPurchaseSell",
+    "信用交易": "TaiwanStockMarginPurchaseSell",
+
+    # 委買委賣
+    "委買": "TaiwanStockPrice",
+    "委賣": "TaiwanStockPrice",
+    "委買張數": "TaiwanStockPrice",
+    "委賣張數": "TaiwanStockPrice",
+    "委買单": "TaiwanStockPrice",
+    "委賣單": "TaiwanStockPrice",
+    "買壓": "TaiwanStockPrice",
+    "賣壓": "TaiwanStockPrice",
+    "淨委買": "TaiwanStockPrice",
+
+    # 公司基本資料（TaiwanStockInfo 實際欄位：industry_category, stock_id, stock_name, type, date）
+    "產業別": "TaiwanStockInfo",
+    "產業類別": "TaiwanStockInfo",
+    "股票名稱": "TaiwanStockInfo",
+    "市場別": "TaiwanStockInfo",
+    "上市別": "TaiwanStockInfo",
+    "上市股": "TaiwanStockInfo",
+    "上櫃股": "TaiwanStockInfo",
+    # 資本額/股本 實際在 TaiwanStockBalanceSheet 的 CapitalStock 欄位
+    "資本額": "TaiwanStockBalanceSheet",
+    "股本": "TaiwanStockBalanceSheet",
+    "市値": "TaiwanStockPER",
 }
 
 # ========== 24h In-Memory Cache ==========
@@ -264,8 +314,25 @@ def detect_market_intent(query: str) -> list[str]:
         "市場",
         "整體市場",
         "盤勢",
+        "股票",
+        "股市",
+        "台股今天",
+        "今日股市",
+        "整體股票",
+        "股票市場",
     ]
     return [p for p in patterns if p in query]
+
+
+AMBIGUOUS_KEYWORDS = [
+    "有漲", "有跌", "漲了嗎", "跌了嗎", "漲嗎", "跌嗎",
+    "上漲", "下跌", "漲多少", "跌多少",
+]
+
+
+def detect_ambiguous_intent(query: str) -> bool:
+    """偵測模糊意圖（可能是薪資也可能是股票）"""
+    return any(kw in query for kw in AMBIGUOUS_KEYWORDS)
 
 
 def detect_compare_windows(query: str) -> dict[str, bool]:
@@ -274,8 +341,9 @@ def detect_compare_windows(query: str) -> dict[str, bool]:
     """
     q = query.replace(" ", "")
     return {
-        "DOD": any(x in q for x in ["DOD", "日對日", "昨日", "前一日", "當日比昨日", "與昨天"]),
-        "WOW": any(x in q for x in ["WOW", "週對週", "上週", "近一週", "一週"]),
+        "DOD": any(x in q for x in ["DOD", "日對日", "昨日", "前一日", "當日比昨日", "與昨天",
+                                     "昨天", "前天", "今天", "今日", "當日", "最新", "現在", "目前"]),
+        "WOW": any(x in q for x in ["WOW", "週對週", "上週", "近一週", "一週", "這週", "本週"]),
         "MOM": any(x in q for x in ["MOM", "月對月", "上月", "近一個月", "本月比上月"]),
         "SOS": any(x in q for x in ["SOS", "半年對半年", "上半年", "近半年", "半年度"]),
         "YOY": any(x in q for x in ["YOY", "年對年", "去年", "近一年", "一年內"]),
@@ -313,14 +381,16 @@ def _format_index_summary(
 def get_market_index_summary(
     query: str,
     *,
+    force: bool = False,
     index_data_id: str = "TAIEX",
     today: datetime | None = None,
 ) -> str:
     """
     根據查詢取得台股總覽/大盤指數摘要（支援 DOD/WOW/MOM/SOS/YOY）
+    force=True：跳過關鍵字 guard，直接查最新指數
     """
     windows = detect_compare_windows(query)
-    if not any(windows.values()) and not detect_market_intent(query):
+    if not force and not any(windows.values()) and not detect_market_intent(query):
         return ""
 
     now = today or datetime.now()
@@ -495,6 +565,88 @@ def get_financial_summary(stock_id: str, query: str) -> str:
                 lines.append(f"  最新收盤：{d.get('close','N/A')}元")
                 lines.append(f"  近期高點：{high}元 / 低點：{low}元")
                 lines.append(f"  成交量：{d.get('Trading_Volume','N/A')}張")
+                summaries.append("\n".join(lines))
+
+        elif dataset == "TaiwanStockBalanceSheet":
+            if data:
+                # 按日期取最新一筆
+                latest_date = max(d.get('date', '') for d in data)
+                latest = [d for d in data if d.get('date') == latest_date]
+                row = {d['type']: d.get('value', 0) or 0 for d in latest}
+
+                lines = [f"【資產負債（{latest_date}）】"]
+
+                def fmt(v):
+                    try:
+                        return f"{float(v)/1e8:.1f}億"
+                    except:
+                        return str(v)
+
+                if 'CapitalStock' in row:
+                    lines.append(f"  股本：{fmt(row['CapitalStock'])}")
+                if 'TotalAssets' in row:
+                    lines.append(f"  總資產：{fmt(row['TotalAssets'])}")
+                if 'Liabilities' in row:
+                    lines.append(f"  總負債：{fmt(row['Liabilities'])}")
+                if 'Equity' in row:
+                    lines.append(f"  股東權益：{fmt(row['Equity'])}")
+                if 'Liabilities' in row and 'TotalAssets' in row and float(row['TotalAssets']) > 0:
+                    debt_ratio = float(row['Liabilities']) / float(row['TotalAssets']) * 100
+                    lines.append(f"  負債比：{debt_ratio:.1f}%")
+                if 'RetainedEarnings' in row:
+                    lines.append(f"  保留盈餘：{fmt(row['RetainedEarnings'])}")
+                if 'CashAndCashEquivalents' in row:
+                    lines.append(f"  現金及約當現金：{fmt(row['CashAndCashEquivalents'])}")
+                if 'CurrentAssets' in row:
+                    lines.append(f"  流動資產：{fmt(row['CurrentAssets'])}")
+                if 'CurrentLiabilities' in row:
+                    lines.append(f"  流動負債：{fmt(row['CurrentLiabilities'])}")
+
+                if len(lines) > 1:
+                    summaries.append("\n".join(lines))
+
+        elif dataset == "TaiwanStockMarginPurchaseSell":
+            if recent:
+                d = recent[-1]
+                lines = ["【融資融券（最新）】"]
+                lines.append(f"  日期：{d.get('date', 'N/A')}")
+                lines.append(f"  融資餘額：{d.get('MarginPurchaseBalance', 'N/A')}張")
+                lines.append(f"  融券餘額：{d.get('ShortSaleBalance', 'N/A')}張")
+                lines.append(f"  融資買進：{d.get('MarginPurchaseBuy', 'N/A')}張")
+                lines.append(f"  融券賣出：{d.get('ShortSaleSell', 'N/A')}張")
+                summaries.append("\n".join(lines))
+
+        elif dataset == "TaiwanStockCashFlowsStatement":
+            if data:
+                # 按季分組，取最近4季
+                from collections import defaultdict
+                by_date = defaultdict(dict)
+                for d in data:
+                    by_date[d['date']][d['type']] = d.get('value', 0) or 0
+                quarters = sorted(by_date.keys(), reverse=True)[:4]
+                lines = ["【現金流量（近4季）】"]
+                for q in reversed(quarters):
+                    row = by_date[q]
+                    op = row.get('CashFlowsFromOperatingActivities') or row.get('NetCashInflowFromOperatingActivities') or 0
+                    capex = row.get('PropertyAndPlantAndEquipment') or 0
+                    fcf = op - abs(capex)
+                    op_b = op / 1e8
+                    capex_b = abs(capex) / 1e8
+                    fcf_b = fcf / 1e8
+                    lines.append(
+                        f"  {q[:7]}｜營業現金流：{op_b:,.1f}億 ｜資本支出：{capex_b:,.1f}億 ｜自由現金流(FCF)：{fcf_b:,.1f}億"
+                    )
+                summaries.append("\n".join(lines))
+
+        elif dataset == "TaiwanStockInfo":
+            if data:
+                d = data[0]
+                lines = ["【公司基本資料】"]
+                lines.append(f"  股票代號：{d.get('stock_id', 'N/A')}")
+                lines.append(f"  公司名稱：{d.get('stock_name', 'N/A')}")
+                lines.append(f"  產業別：{d.get('industry_category', 'N/A')}")
+                lines.append(f"  市場：{'上市(TWSE)' if d.get('type') == 'twse' else '上櫃(TPEx)' if d.get('type') == 'tpex' else d.get('type', 'N/A')}")
+                lines.append(f"  資料日期：{d.get('date', 'N/A')}")
                 summaries.append("\n".join(lines))
 
     return "\n\n".join(summaries) if summaries else ""

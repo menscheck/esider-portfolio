@@ -1,0 +1,174 @@
+{
+  "台積電": {
+    "error": "Timeout 30000ms exceeded.\n=========================== logs ===========================\n\"commit\" event fired\n\"domcontentloaded\" event fired\n\"load\" event fired\n\"commit\" event fired\n\"domcontentloaded\" event fired\n\"load\" event fired\n\"commit\" event fired\n\"domcontentloaded\" event fired\n\"load\" event fired\n============================================================",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:33.038390"
+  },
+  "日月光投控": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://esg.aseglobal.com/\nCall log:\n  - navigating to \"https://esg.aseglobal.com/\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:33.200595"
+  },
+  "元太科技": {
+    "元太科技_1.pdf": {
+      "url": "https://www.eink.com/assets/document/cookiepolicy.pdf",
+      "filename": "元太科技_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:12:42.172293"
+    }
+  },
+  "鴻海精密": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://esg.foxconn.com/\nCall log:\n  - navigating to \"https://esg.foxconn.com/\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:42.399085"
+  },
+  "矽品精密工業": {
+    "矽品精密工業_1.pdf": {
+      "url": "https://www.spilglobal.com/Files/reports/Monthly_Sales/2023/Monthly%20revenue%20Nov%202023%20ENG.pdf",
+      "filename": "矽品精密工業_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:12:45.495384"
+    }
+  },
+  "欣興電子": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:46.635234"
+  },
+  "玉山金控": {
+    "玉山金控_1.pdf": {
+      "url": "https://www.esunbank.com/zh-tw/-/media/ESUNFHC/Files/Mega-Footer/USA_PAC.pdf",
+      "filename": "玉山金控_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:12:48.916708"
+    }
+  },
+  "中國信託銀行": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:50.393575"
+  },
+  "國泰金控": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:53.196415"
+  },
+  "台北富邦銀行": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:12:54.938861"
+  },
+  "合作金庫銀行": {
+    "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.tcb-bank.com.tw/esg\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:26.117867"
+  },
+  "第一銀行": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:27.809642"
+  },
+  "彰化銀行": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:33.927406"
+  },
+  "台新金控": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.taishinholdings.com.tw/esg\nCall log:\n  - navigating to \"https://www.taishinholdings.com.tw/esg\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:34.163469"
+  },
+  "亞洲水泥": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:35.788603"
+  },
+  "遠東新世紀": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:41.999672"
+  },
+  "榮成紙業": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:42.985617"
+  },
+  "宏遠興業": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:13:57.147369"
+  },
+  "中鋼公司": {
+    "中鋼公司_1.pdf": {
+      "url": "https://www.csc.com.tw/doc/cscw.pdf",
+      "filename": "中鋼公司_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:13:59.396447"
+    }
+  },
+  "統一超商": {
+    "統一超商_1.pdf": {
+      "url": "https://www.7-11.com.tw/company/esg/images/report/2024_CH0_CH.pdf",
+      "filename": "統一超商_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:14:01.745825"
+    }
+  },
+  "全家便利商店": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:02.864502"
+  },
+  "全聯實業": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:08.503720"
+  },
+  "遠東SOGO": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:11.014164"
+  },
+  "台電公司": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:14.555716"
+  },
+  "台灣中油": {
+    "台灣中油_1.pdf": {
+      "url": "https://ws.cpc.com.tw/Download.ashx?u=LzAwMS9VcGxvYWQvMS9yZWxmaWxlLzAvNi9lYzhmYzNlNS1mNDI1LTRiMmQtYjkxMS0wMzk2Y2ZkMWRhZmEucGRm&amp;n=57WE57mU57O757Wx6KGoMTEzMDgg5rOV5YuZ5a6k6K6K5rOV5YuZ6JmVLnBkZg%3d%3d&amp;icon=.pdf",
+      "filename": "台灣中油_1.pdf",
+      "status": "error: 404 Client Error: Not Found for url: https://ws.cpc.com.tw/Download.ashx?u=LzAwMS9VcGxvYWQvMS9yZWxmaWxlLzAvNi9lYzhmYzNlNS1mNDI1LTRiMmQtYjkxMS0wMzk2Y2ZkMWRhZmEucGRm&amp;n=57WE57mU57O757Wx6KGoMTEzMDgg5rOV5YuZ5a6k6K6K5rOV5YuZ6JmVLnBkZg%3D%3D&amp;icon=.pdf",
+      "download_time": "2026-05-03T15:14:17.356938"
+    }
+  },
+  "永豐銀行": {
+    "永豐銀行_1.pdf": {
+      "url": "https://www.sinopac.com/upload/event/load/稅務治理報告_2023.pdf",
+      "filename": "永豐銀行_1.pdf",
+      "status": "success",
+      "download_time": "2026-05-03T15:14:19.547621"
+    }
+  },
+  "崇越科技": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.tec.com.tw/tw/csr\nCall log:\n  - navigating to \"https://www.tec.com.tw/tw/csr\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:19.727140"
+  },
+  "長榮航空": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://esg.evaair.com/\nCall log:\n  - navigating to \"https://esg.evaair.com/\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:19.958918"
+  },
+  "台糖公司": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:23.343506"
+  },
+  "大愛感恩科技": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:24.984490"
+  },
+  "佳世達集團": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:27.565582"
+  },
+  "富邦產險": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:29.055568"
+  },
+  "新光人壽": {
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:30.164811"
+  },
+  "南山產物": {
+    "error": "Page.goto: net::ERR_NAME_NOT_RESOLVED at https://www.nanshaninsurance.com.tw/NanshanWeb/about/esg\nCall log:\n  - navigating to \"https://www.nanshaninsurance.com.tw/NanshanWeb/about/esg\", waiting until \"load\"\n",
+    "status": "no_pdf_found",
+    "download_time": "2026-05-03T15:14:30.371848"
+  }
+}

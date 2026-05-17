@@ -98,7 +98,7 @@ class ESGPipeline:
             # 轉換為 list 格式
             embeddings = [emb.tolist() if hasattr(emb, 'tolist') else emb for emb in embeddings]
 
-            # 存儲到 MongoDB（使用 upsert）
+            # 存儲到 MongoDB（使用 upsert）— embedding 只存 FAISS，不存 MongoDB 以節省空間
             mongo_docs = []
             for chunk, embedding in zip(batch, embeddings):
                 doc = {
@@ -107,7 +107,6 @@ class ESGPipeline:
                     'page': chunk['page'],
                     'chunk_id': chunk['chunk_id'],
                     'text': chunk['text'],
-                    'embedding': embedding
                 }
                 mongo_docs.append(doc)
 

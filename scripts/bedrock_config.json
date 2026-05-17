@@ -1,0 +1,9 @@
+{
+  "aws_profile": "default",
+  "aws_region": "us-east-1",
+  "aws_access_key_id": "",
+  "aws_secret_access_key": "",
+  "aws_bearer_token_bedrock": "ABSKQmVkcm9ja0FQSUtleS1hMzhnLWF0LTU5NjA1NTc1MjI3Mzp0YldINnVOemQwcDRySGk2NlJtRDBLN0lCZjBPZmhnRGsza0wvbUMzQ2VSZDlyVDNBekNXNE1hSGExND0=",
+  "claude_cli_cmd": "claude",
+  "notes": "Bedrock config. Token provided will be exported as AWS_BEARER_TOKEN_BEDROCK env var when launching via cc-bedrok."
+}

@@ -40,12 +40,20 @@ def generate_followup_questions(
     # query_type 決定延伸問題切入點（finmind 走台股即時財務；esg 走永續/方法論）
     if query_type == "finmind":
         focus = {
-            "散戶投資人": "股價走勢、成交量、法人動向、技術面、近期漲跌、配息、本益比",
-            "機構投資人": "財務比率ROE/ROA/ROIC、自由現金流、資本支出、營收YoY/MoM、法人買超",
-        }.get(persona_name, "股價財務即時數據")
-        broad_instruction = (
-            f"- 問題3：從{company}本題提到的財務/市場重點提煉一個具體指標，跨公司問是否也相似，20字以內"
-        )
+            "散戶投資人": "股價走勢、成交量量價關係、多空比例、法人動向、技術指標、近期漲跌、配息、本益比、融資融券",
+            "機構投資人": "財務比率ROE/ROA/ROIC、自由現金流、資本支出、營收YoY/MoM、法人買超、籌碼面分析",
+        }.get(persona_name, "股價財務即時數據、量價關係、法人籌碼、多空比例")
+
+        if company in ("台股大盤", "大盤", "TAIEX", "") or not company:
+            broad_instruction = (
+                f"- 問題1：針對大盤整體，聚焦{focus}，15字以內\n"
+                f"- 問題2：針對大盤整體，從不同角度切入，15字以內\n"
+                f"- 問題3：針對大盤整體，預測或風險評估方向，15字以內"
+            )
+        else:
+            broad_instruction = (
+                f"- 問題3：從{company}本題提到的財務/市場重點提煉一個具體指標，跨公司問是否也相似，20字以內"
+            )
     else:
         focus = {
             "求職者": "薪資福利工時職涯",

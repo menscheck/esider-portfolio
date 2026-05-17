@@ -1,0 +1,6 @@
+{
+  "api_key": "",
+  "use_browser_login": true,
+  "claude_cli_cmd": "claude",
+  "notes": "Using browser subscription login for Claude Pro. Leave api_key empty when using browser login."
+}
