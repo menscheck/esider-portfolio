@@ -10,3 +10,5 @@ __pycache__/
 *.log
 bot_stdout.log
 bot_stderr.log
+
+.env
